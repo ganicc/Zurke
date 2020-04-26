@@ -1,14 +1,30 @@
+const express = require("express");
+const cors = require("cors");
+const mongoose = require("mongoose");
 
-const express=require('express');
+const app = express();
+const port = process.env.port || 5000;
 
-const connectDB=require('./DB/Connection.js');
+app.use(cors());
+app.use(express.json());
 
-const app=express();
+const url =
+  "mongodb+srv://Ganic:marsteam@marsteam-pq2rx.mongodb.net/test?retryWrites=true";
+mongoose.connect(url, {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useUnifiedTopology: true,
+});
 
-connectDB();
-app.use(express.json({extended: false}));
-app.use('/api/userModel',require('./API/User.js'));
+const connection = mongoose.connection;
+connection.once("open", () => {
+  console.log("Database connected succesfully.");
+});
 
-const Port=process.env.Port || 3000;
+const usersRouter = require("./routes/users.js");
 
-app.listen(Port,()=>console.log("Server started."));
+app.use("/users", usersRouter);
+
+app.listen(port, () => {
+  console.log(`Server is running on the port ${port}`);
+});
