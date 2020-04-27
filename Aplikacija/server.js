@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 const url =
-  "mongodb+srv://Ganic:marsteam@marsteam-pq2rx.mongodb.net/test?retryWrites=true";
+  "mongodb+srv://admin:admin@marsteam-n0zdg.mongodb.net/test?retryWrites=true";
 mongoose.connect(url, {
   useNewUrlParser: true,
   useCreateIndex: true,
