@@ -28,7 +28,6 @@ const userSchema = new Schema(
     datumRodj: {
       type: Date,
       required: true,
-      trim: true,
     },
     email: {
       type: String,

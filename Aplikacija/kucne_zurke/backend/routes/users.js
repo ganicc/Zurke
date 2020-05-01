@@ -1,35 +1,90 @@
-const router = require("express").Router();
-let User = require("../models/user.model");
+const express = require("express");
+const users = express.Router();
+const cors = require("cors");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
-router.route("/").get((req, res) => {
-  User.find()
-    .then((users) => res.json(users))
-    .catch((err) => res.status(400).json("Error: " + err));
+const User = require("../models/user.model");
+users.use(cors());
+
+process.env.SECRET_KEY = "secret";
+
+users.post("/register", (req, res) => {
+  const today = new Date();
+  const userData = {
+    ime: req.body.ime,
+    prezime: req.body.prezime,
+    korisnickoIme: req.body.korisnickoIme,
+    sifra: req.body.sifra,
+    datumRodj: req.body.datumRodj,
+    email: req.body.email,
+    pol: req.body.pol,
+    created: today,
+  };
+
+  User.findOne({ korisnickoIme: req.body.korisnickoIme })
+    .then((user) => {
+      if (!user) {
+        bcrypt.hash(req.body.sifra, 10, (err, hash) => {
+          userData.sifra = hash;
+          User.create(userData)
+            .then((user) => {
+              res.json({ status: user.korisnickoIme + " je registovan!" });
+            })
+            .catch((err) => res.send("Error" + err));
+        });
+      } else {
+        res.json({ error: "Vec postoji ovaj korisnik!" });
+      }
+    })
+    .catch((err) => res.send("Error " + err));
 });
 
-router.route("/add").post((req, res) => {
-  const ime = req.body.ime;
-  const prezime = req.body.prezime;
-  const korisnickoIme = req.body.korisnickoIme;
-  const sifra = req.body.sifra;
-  const datumRodj = req.body.datumRodj;
-  const email = req.body.email;
-  const pol = req.body.pol;
+users.post("/login", (req, res) => {
+  User.findOne({ korisnickoIme: req.body.korisnickoIme })
+    .then((user) => {
+      if (user) {
+        if (bcrypt.compareSync(req.body.sifra, user.sifra)) {
+          //Sifre se poklapaju
+          const payload = {
+            _id: user._id,
+            ime: user.ime,
+            prezime: user.prezime,
+            korisnickoIme: user.korisnickoIme,
+            email: user.email,
+            datumRodj: user.datumRodj,
+            pol: user.pol,
+          };
 
-  const newUser = new User({
-    ime,
-    prezime,
-    korisnickoIme,
-    sifra,
-    datumRodj,
-    email,
-    pol,
-  });
-
-  newUser
-    .save()
-    .then(() => res.json("User added."))
-    .catch((err) => res.status(400).json("Error: " + err));
+          let token = jwt.sign(payload, process.env.SECRET_KEY, {
+            expiresIn: 1440,
+          });
+          res.send({ token });
+        } else {
+          //Sifre se ne poklapaju
+          res.json({ error: "Pogresna sifra!" });
+        }
+      } else {
+        res.json({ error: "Ne postoji ovaj korisnik!" });
+      }
+    })
+    .catch((err) => res.send("Error" + err));
 });
 
-module.exports = router;
+users.get("/profil", (req, res) => {
+  var decoded = jwt.verify(
+    req.headers["authorization"],
+    process.env.SECRET_KEY
+  );
+
+  User.findOne({
+    _id: decoded._id,
+  })
+    .then((user) => {
+      if (user) res.json(user);
+      else res.send("Ne postoji ovaj korisnik!");
+    })
+    .catch((err) => res.send("Error" + err));
+});
+
+module.exports = users;
