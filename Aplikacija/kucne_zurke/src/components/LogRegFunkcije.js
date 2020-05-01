@@ -11,8 +11,9 @@ export const register = (newUser) => {
       email: newUser.email,
       pol: newUser.pol,
     })
-    .then((response) => {
-      console.log(newUser.korisnickoIme + " je registrovan.");
+    .then((res) => {
+      console.log(res.data);
+      return res.data;
     });
 };
 

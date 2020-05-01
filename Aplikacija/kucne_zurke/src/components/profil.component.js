@@ -2,13 +2,12 @@ import React, { Component } from "react";
 import jwt_decode from "jwt-decode";
 
 export default class Profil extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       ime: "",
       prezime: "",
       korisnickoIme: "",
-      sifra: "",
       datumRodj: new Date(),
       email: "",
       pol: "",
@@ -22,8 +21,7 @@ export default class Profil extends Component {
       ime: decoded.ime,
       prezime: decoded.prezime,
       korisnickoIme: decoded.korisnickoIme,
-      sifra: decoded.sifra,
-      datumRodj: decoded.datumRodj,
+      datumRodj: new Date(decoded.datumRodj),
       email: decoded.email,
       pol: decoded.pol,
     });
@@ -40,24 +38,26 @@ export default class Profil extends Component {
             <tbody>
               <tr>
                 <td>Ime</td>
+                <td>{this.state.ime}</td>
               </tr>
               <tr>
                 <td>Prezime</td>
+                <td>{this.state.prezime}</td>
               </tr>
               <tr>
                 <td>Korisnicko ime</td>
-              </tr>
-              <tr>
-                <td>Sifra</td>
+                <td>{this.state.korisnickoIme}</td>
               </tr>
               <tr>
                 <td>Datum rodjenja</td>
               </tr>
               <tr>
                 <td>Email</td>
+                <td>{this.state.email}</td>
               </tr>
               <tr>
                 <td>Pol</td>
+                <td>{this.state.pol}</td>
               </tr>
             </tbody>
           </table>

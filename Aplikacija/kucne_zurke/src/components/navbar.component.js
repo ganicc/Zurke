@@ -59,7 +59,7 @@ class Navbar extends Component {
           className="collapse navbar-collapse justify-contect-md-center"
           id="navbar1"
         >
-          <ul className="navbar-nav">
+          <ul className="navbar-nav navbar-right">
             <li className="nav-item">
               <Link to="/" className="nav-link">
                 Pocetna strana

@@ -9,11 +9,10 @@ const port = process.env.port || 5000;
 app.use(bodyParser.json());
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.json());
 
-const url =
+const mongoUrl =
   "mongodb+srv://admin:admin@marsteam-n0zdg.mongodb.net/test?retryWrites=true";
-mongoose.connect(url, {
+mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true,

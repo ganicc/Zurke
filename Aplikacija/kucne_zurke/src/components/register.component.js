@@ -14,13 +14,18 @@ export default class Register extends Component {
       datumRodj: new Date(),
       email: "",
       pol: "",
+      radio: "",
     };
 
     this.onChange = this.onChange.bind(this);
+    this.onChangeRadio = this.onChangeRadio.bind(this);
     this.onChangeDate = this.onChangeDate.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  onChangeRadio(e) {
+    this.setState({ pol: e.target.value });
+  }
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -109,12 +114,21 @@ export default class Register extends Component {
               <div className="form-group">
                 <label htmlFor="pol">Pol</label>
                 <input
-                  type="text"
-                  className="form-control"
-                  name="pol"
-                  value={this.state.pol}
-                  onChange={this.onChange}
+                  type="radio"
+                  name="radio1"
+                  value="muski"
+                  checked={this.state.radio1}
+                  onChange={this.onChangeRadio}
                 />
+                Muski
+                <input
+                  type="radio"
+                  name="radio1"
+                  value="zenski"
+                  checked={this.state.radio1}
+                  onChange={this.onChangeRadio}
+                />
+                Zenski
               </div>
               <div className="form-group">
                 <label htmlFor="datumRodj">Date: </label>

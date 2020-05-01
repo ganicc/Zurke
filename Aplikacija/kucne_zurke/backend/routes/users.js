@@ -51,15 +51,13 @@ users.post("/login", (req, res) => {
             ime: user.ime,
             prezime: user.prezime,
             korisnickoIme: user.korisnickoIme,
-            email: user.email,
             datumRodj: user.datumRodj,
+            email: user.email,
             pol: user.pol,
           };
 
-          let token = jwt.sign(payload, process.env.SECRET_KEY, {
-            expiresIn: 1440,
-          });
-          res.send({ token });
+          let token = jwt.sign(payload, process.env.SECRET_KEY, {});
+          res.send(token);
         } else {
           //Sifre se ne poklapaju
           res.json({ error: "Pogresna sifra!" });
