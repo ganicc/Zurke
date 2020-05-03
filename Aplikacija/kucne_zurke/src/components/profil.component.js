@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import jwt_decode from "jwt-decode";
 
 export default class Profil extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       ime: "",
       prezime: "",
@@ -50,6 +50,7 @@ export default class Profil extends Component {
               </tr>
               <tr>
                 <td>Datum rodjenja</td>
+                <td> {this.state.datumRodj.toDateString().substring(3, 15)}</td>
               </tr>
               <tr>
                 <td>Email</td>
