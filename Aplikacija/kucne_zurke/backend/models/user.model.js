@@ -40,6 +40,11 @@ const userSchema = new Schema(
       required: true,
       trim: true,
     },
+    tip: {
+      type: String,
+      default: "korisnik",
+      required: true,
+    },
   },
   {
     timestamps: true,

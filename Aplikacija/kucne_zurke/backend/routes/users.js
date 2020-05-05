@@ -3,6 +3,8 @@ const users = express.Router();
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const { isLogged, isAdmin } = require("../auth.js");
+const { TIP } = require("../models/tip");
 
 const User = require("../models/user.model");
 users.use(cors());
@@ -19,6 +21,7 @@ users.post("/register", (req, res) => {
     datumRodj: req.body.datumRodj,
     email: req.body.email,
     pol: req.body.pol,
+    tip: req.body.tip,
     created: today,
   };
 
@@ -69,7 +72,7 @@ users.post("/login", (req, res) => {
     .catch((err) => res.send("Error" + err));
 });
 
-users.get("/profil", (req, res) => {
+/*users.get("/profil", (req, res) => {
   var decoded = jwt.verify(
     req.headers["authorization"],
     process.env.SECRET_KEY
@@ -83,6 +86,19 @@ users.get("/profil", (req, res) => {
       else res.send("Ne postoji ovaj korisnik!");
     })
     .catch((err) => res.send("Error" + err));
+});*/
+
+users.get("/admin", isLogged, isAdmin(TIP.ADMIN), (req, res) => {
+  res.send("Admin page");
+});
+
+users.get("/profil", (req, res) => {
+  User.findOne({ korisnickoIme: req.body.korisnickoIme })
+    .then((user) => {
+      if (user) res.send(user);
+      else res.send("Ne postoji taj korisnik");
+    })
+    .catch((err) => res.send("error" + err));
 });
 
 module.exports = users;

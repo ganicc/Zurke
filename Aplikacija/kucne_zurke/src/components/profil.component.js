@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import jwt_decode from "jwt-decode";
+//import { isLogged, isAdmin } from "../../backend/auth";
 
 export default class Profil extends Component {
   constructor() {
@@ -11,6 +12,8 @@ export default class Profil extends Component {
       datumRodj: new Date(),
       email: "",
       pol: "",
+      tip: "",
+      zurke: [],
     };
   }
 
@@ -24,6 +27,7 @@ export default class Profil extends Component {
       datumRodj: new Date(decoded.datumRodj),
       email: decoded.email,
       pol: decoded.pol,
+      zurke: decoded.zurke,
     });
   }
 
@@ -59,6 +63,10 @@ export default class Profil extends Component {
               <tr>
                 <td>Pol</td>
                 <td>{this.state.pol}</td>
+              </tr>
+              <tr>
+                <td>Lista Zurki</td>
+                <td>{this.state.zurke}</td>
               </tr>
             </tbody>
           </table>
