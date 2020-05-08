@@ -63,7 +63,7 @@ users.post("/login", (req, res) => {
           res.send(token);
         } else {
           //Sifre se ne poklapaju
-          res.json({ error: "Pogresna sifra!" });
+          res.send("Pogresna sifra!");
         }
       } else {
         res.json({ error: "Ne postoji ovaj korisnik!" });

@@ -24,8 +24,12 @@ export const login = (User) => {
       sifra: User.sifra,
     })
     .then((res) => {
-      localStorage.setItem("usertoken", res.data);
-      return res.data;
+      if (res.data === "Pogresna sifra!") {
+        return console.log(res.data);
+      } else {
+        localStorage.setItem("usertoken", res.data);
+        return res.data;
+      }
     })
     .catch((err) => console.log("Error: " + err));
 };
