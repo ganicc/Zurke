@@ -28,6 +28,8 @@ export default class Login extends Component {
     login(User).then((res) => {
       if (res) {
         this.props.history.push("/profil");
+      } else {
+        alert("Pogresna sifra");
       }
     });
   }
