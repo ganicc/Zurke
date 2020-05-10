@@ -66,7 +66,8 @@ users.post("/login", (req, res) => {
           res.send("Pogresna sifra!");
         }
       } else {
-        res.json({ error: "Ne postoji ovaj korisnik!" });
+        //res.json({ error: "Ne postoji ovaj korisnik!" });
+        res.send("Ne postoji ovaj korisnik!");
       }
     })
     .catch((err) => res.send("Error" + err));

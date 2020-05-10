@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import jwt_decode from "jwt-decode";
+import { Link } from "react-router-dom";
+
 //import { isLogged, isAdmin } from "../../backend/auth";
 
 export default class Profil extends Component {
@@ -16,7 +18,6 @@ export default class Profil extends Component {
       zurke: [],
     };
   }
-
   componentDidMount() {
     const token = localStorage.usertoken;
     const decoded = jwt_decode(token);
@@ -32,6 +33,8 @@ export default class Profil extends Component {
   }
 
   render() {
+    //const odstampajZurke = <div>{this.state.zurke}</div>;
+
     return (
       <div className="container">
         <div className="jumbotron mt-5">
@@ -66,10 +69,15 @@ export default class Profil extends Component {
               </tr>
               <tr>
                 <td>Lista Zurki</td>
-                <td>{this.state.zurke}</td>
+                <td>
+                  <Link to="/mojezurke" className="mojezurke">
+                    MojeZurke
+                  </Link>
+                </td>
               </tr>
             </tbody>
           </table>
+          <div></div>
         </div>
       </div>
     );

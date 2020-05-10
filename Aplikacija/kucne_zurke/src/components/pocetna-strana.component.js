@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 export default class PocetnaStrana extends Component {
   render() {
     return (
@@ -9,6 +8,7 @@ export default class PocetnaStrana extends Component {
             <h1 className="text-center">Dobrodosli</h1>
           </div>
         </div>
+        <img src="/images/slika.png" alt="" />
       </div>
     );
   }

@@ -1,9 +1,8 @@
-GET http://localhost:5000/users/admin
+GET http://localhost:5000/zurke/prikaz
 Content-Type: application/json
 
 {
-    "korisnickoIme": "admin",
-    "sifra": "123"
+    "organizator": "milos"
 }
 
 
