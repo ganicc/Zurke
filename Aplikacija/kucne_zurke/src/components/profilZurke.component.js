@@ -1,24 +1,22 @@
 import React, { Component } from "react";
-import jwt_decode from "jwt-decode";
-import { Link } from "react-router-dom";
+//import jwt_decode from "jwt-decode";
+//import { Link } from "react-router-dom";
 
 //import { isLogged, isAdmin } from "../../backend/auth";
 
-export default class Profil extends Component {
+export default class ProfilZurke extends Component {
   constructor() {
     super();
     this.state = {
-      ime: "",
-      prezime: "",
-      korisnickoIme: "",
-      datumRodj: new Date(),
-      email: "",
-      pol: "",
-      tip: "",
-      zurke: [],
+      organizator: "",
+      naziv: "",
+      opis: "",
+      datumOdrzavanja: new Date(),
+      tipZurke: "",
+      brojljudi: 0,
     };
   }
-  componentDidMount() {
+  /*componentDidMount() {
     const token = localStorage.usertoken;
     const decoded = jwt_decode(token);
     this.setState({
@@ -30,11 +28,9 @@ export default class Profil extends Component {
       pol: decoded.pol,
       zurke: decoded.zurke,
     });
-  }
+  }*/
 
   render() {
-    //const odstampajZurke = <div>{this.state.zurke}</div>;
-
     return (
       <div className="container">
         <div className="jumbotron mt-5">
@@ -44,36 +40,24 @@ export default class Profil extends Component {
           <table className="table col-md-6 mx-auto">
             <tbody>
               <tr>
-                <td>Ime</td>
-                <td>{this.state.ime}</td>
+                <td>Organizator zurke</td>
+                <td>{this.state.organizator}</td>
               </tr>
               <tr>
-                <td>Prezime</td>
-                <td>{this.state.prezime}</td>
+                <td>Naziv Zurke</td>
+                <td>{this.state.naziv}</td>
               </tr>
               <tr>
-                <td>Korisnicko ime</td>
-                <td>{this.state.korisnickoIme}</td>
+                <td>Opis zurke</td>
+                <td>{this.state.opis}</td>
               </tr>
               <tr>
-                <td>Datum rodjenja</td>
+                <td>Datum odrzavanja zurke</td>
                 <td> {this.state.datumRodj.toDateString().substring(3, 15)}</td>
               </tr>
               <tr>
-                <td>Email</td>
-                <td>{this.state.email}</td>
-              </tr>
-              <tr>
-                <td>Pol</td>
-                <td>{this.state.pol}</td>
-              </tr>
-              <tr>
-                <td>Lista Zurki</td>
-                <td>
-                  <Link to="/mojezurke" className="mojezurke">
-                    MojeZurke
-                  </Link>
-                </td>
+                <td>Broj ljudi koji moze pristustvovati </td>
+                <td>{this.state.brojljudi}</td>
               </tr>
             </tbody>
           </table>

@@ -25,7 +25,11 @@ export const login = (User) => {
     })
     .then((res) => {
       if (res.data === "Pogresna sifra!") {
-        return console.log(res.data);
+        console.log(res.data);
+        return alert("Pogresna sifra!");
+      } else if (res.data === "Ne postoji ovaj korisnik!") {
+        console.log(res.data);
+        return alert("Ne postoji ovaj korisnik!");
       } else {
         localStorage.setItem("usertoken", res.data);
         return res.data;

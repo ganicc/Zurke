@@ -7,6 +7,7 @@ export default class Login extends Component {
     this.state = {
       korisnickoIme: "",
       sifra: "",
+      prikaziPorukuOUnosuIpravnihPodataka: false,
     };
 
     this.onChange = this.onChange.bind(this);
@@ -29,8 +30,13 @@ export default class Login extends Component {
       if (res) {
         this.props.history.push("/profil");
       } else {
-        alert("Pogresna sifra");
+        this.unesiIspravnePodatke();
       }
+    });
+  }
+  unesiIspravnePodatke() {
+    this.setState({
+      prikaziPorukuOUnosuIpravnihPodataka: true,
     });
   }
 
@@ -43,7 +49,14 @@ export default class Login extends Component {
               <h1 className="h3 mb-3 font-weight-normal">
                 Molimo vas da se ulogujete
               </h1>
+
               <div className="form-group">
+                {this.state.prikaziPorukuOUnosuIpravnihPodataka ? (
+                  <div className="" 
+               >
+                    Unesi ispravne podatke!
+                  </div>
+                ) : null}
                 <label htmlFor="korisnickoIme">Korisnicko ime</label>
                 <input
                   type="korisnickoIme"
@@ -63,6 +76,7 @@ export default class Login extends Component {
                   onChange={this.onChange}
                 />
               </div>
+
               <button type="submit" className="btn btn-primary">
                 Log in
               </button>
