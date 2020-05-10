@@ -13,24 +13,23 @@ zurke.use(cors());
     .catch((err) => res.status(400).json("Error: " + err));
 })*/
 
-zurke.post("/registracijaZurke", (req, res) => {
+zurke.post("/register", (req, res) => {
   const today = new Date();
-  console.log("registracijaZurke");
+  //console.log("registracijaZurke");
   const ZurkaPodaci = {
     organizator: req.body.organizator,
     naziv: req.body.naziv,
     opis: req.body.opis,
-    tipZurke: req.body.tip,
+    tipZurke: req.body.tipZurke,
     brojljudi: req.body.brojljudi,
     datumOdrzavanja: req.body.datumOdrzavanja,
     created: today,
   };
-  console.log("Zurka je napravljena");
+  //console.log("Zurka je napravljena");
   Zurka.create(ZurkaPodaci)
-    .save()
-    .then(() => res.json("Zurka added."))
-    //.catch((err) => res.status(400).json("Error: " + err));
-    .catch((err) => res.send("Error" + err));
+    .then((zurka) => res.json("Zurka added."))
+    .catch((err) => res.status(400).json("Error: " + err));
+  //.catch((err) => res.send("Error" + err));
   console.log("Zurka je dodata");
 });
 
@@ -44,4 +43,4 @@ zurke.post("/registracijaZurke", (req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });*/
 
-module.exports = router;
+module.exports = zurke;

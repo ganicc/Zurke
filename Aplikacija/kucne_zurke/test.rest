@@ -1,9 +1,13 @@
-GET http://localhost:5000/users/admin
+POST http://localhost:5000/zurke/register
 Content-Type: application/json
 
 {
-    "korisnickoIme": "admin",
-    "sifra": "123"
+    "organizator": "Petar",
+    "naziv": "Perina zurka",
+    "opis": "opis zurke",
+    "tipZurke": "EXYU rock",
+    "brojljudi": 50,
+    "datumOdrzavanja": "1998-09-09T18:22:58.507+00:00"
 }
 
 
