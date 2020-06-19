@@ -7,14 +7,23 @@ router.route("/").get((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
-router.route("/add").post((req, res) => {
-  const organizator = req.body.organizator;
+router.route("/prikaz").get((req, res) => {
+  Zurka.find({naziv: req.body.naziv})
+    .then((zurke) => res.json(zurke))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
 
-  const newZurka = new Zurka({ organizator });
-
-  newZurka
-    .save()
-    .then(() => res.json("Zurka added."))
+router.route("/register").post((req, res) => {
+  const zurka =new Zurka ({
+    organizator: req.body.organizator,
+    naziv: req.body.naziv,
+    opis: req.body.opis,
+    tipZurke: req.body.tipZurke,
+    brojljudi: req.body.brojljudi,
+    datumOdrzavanja: req.body.datumOdrzavanja
+  });
+  zurka.save()
+    .then((zurka) => res.json(zurka.naziv+" added."))
     .catch((err) => res.status(400).json("Error: " + err));
 });
 

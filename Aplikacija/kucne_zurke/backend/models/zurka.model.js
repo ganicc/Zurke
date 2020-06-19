@@ -9,6 +9,30 @@ const zurkaSchema = new Schema(
       required: true,
       trim: true,
     },
+    naziv: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    opis: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    tipZurke: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    brojljudi: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    datumOdrzavanja: {
+      type: Date,
+      required: true,
+    },
   },
   {
     timestamps: true,

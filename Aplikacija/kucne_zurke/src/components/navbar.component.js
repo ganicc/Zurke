@@ -28,9 +28,24 @@ class Navbar extends Component {
 
     const userLink = (
       <ul className="navbar-nav">
+      <li className="nav-item">
+          <Link to="/sveZurke" className="nav-link">
+            Aktuelne zurke
+          </Link>
+        </li>
         <li className="nav-item">
           <Link to="/profil" className="nav-link">
             Profil
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/profilZurke" className="nav-link">
+            Profil zurke
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/registerZurka" className="nav-link">
+            Kreiraj zurku
           </Link>
         </li>
         <li className="nav-item">
@@ -66,7 +81,7 @@ class Navbar extends Component {
               </Link>
             </li>
           </ul>
-          {localStorage.usertoken ? userLink : loginRegLink}
+          {localStorage.usertoken ? userLink: loginRegLink}
         </div>
       </nav>
     );

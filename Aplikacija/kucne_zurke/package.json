@@ -12,6 +12,7 @@
     "bootstrap": "^4.4.1",
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^2.2.0",
+    "nodemon": "^2.0.4",
     "react": "^16.13.1",
     "react-datepicker": "^2.14.1",
     "react-dom": "^16.13.1",
