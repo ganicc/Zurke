@@ -43,3 +43,26 @@ export const prikazZurke = (nazivZurke) => {
     })
     .catch((err) => console.log("Error:" + err));
 };
+
+export const prikazMojihZurki = (organizator) => {
+  return axios
+    .get("zurke/")
+    .then((res) => {
+      const zurke=res.data;
+      const filtriraneZurke=zurke.filter(zurka=>zurka.organizator===organizator);
+      console.log(res.data);
+      console.log(filtriraneZurke);
+      return filtriraneZurke;
+    })
+    .catch((err) => console.log("Error:" + err));
+};
+
+export const prikazZurkePoNazivu = (nazivZurke) => {
+  return axios
+    .get("zurke/:naziv",{naziv:nazivZurke})
+    .then((res) => {
+      console.log(res.data);
+      return res.data
+    })
+    .catch((err) => console.log("Error:" + err));
+};

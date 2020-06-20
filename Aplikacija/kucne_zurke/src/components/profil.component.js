@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import jwt_decode from "jwt-decode";
+import {Link} from 'react-router-dom'
 //import { isLogged, isAdmin } from "../../backend/auth";
 
 export default class Profil extends Component {
@@ -66,7 +67,7 @@ export default class Profil extends Component {
               </tr>
               <tr>
                 <td>Lista Zurki</td>
-                <td>{this.state.zurke}</td>
+                <td><Link to='/mojeZurke'>Moje zurke</Link></td>
               </tr>
             </tbody>
           </table>

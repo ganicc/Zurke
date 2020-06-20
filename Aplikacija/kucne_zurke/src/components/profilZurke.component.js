@@ -30,8 +30,7 @@ export default class ProfilZurke extends Component {
           datumOdrzavanja:new Date(data[0].datumOdrzavanja),
           tipZurke:data[0].tipZurke,
           brojljudi:data[0].brojljudi
-        })
-        
+        })       
       }
     })   
   }

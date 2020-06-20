@@ -7,11 +7,13 @@ router.route("/").get((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
-router.route("/prikaz").get((req, res) => {
-  Zurka.find({naziv: req.body.naziv})
+router.route("/:naziv").get((req, res) => {
+  Zurka.find(naziv=req.body.naziv)
     .then((zurke) => res.json(zurke))
     .catch((err) => res.status(400).json("Error: " + err));
 });
+
+
 
 router.route("/register").post((req, res) => {
   const zurka =new Zurka ({

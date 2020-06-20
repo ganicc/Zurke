@@ -27,7 +27,7 @@ class Navbar extends Component {
     );
 
     const userLink = (
-      <ul className="navbar-nav">
+      <ul className="navbar-nav" >
       <li className="nav-item">
           <Link to="/zurke" className="nav-link">
             Aktuelne zurke
@@ -49,7 +49,7 @@ class Navbar extends Component {
           </Link>
         </li>
         <li className="nav-item">
-          <a href="" onClick={this.logOut.bind(this)} className="nav=link">
+          <a href="" onClick={this.logOut.bind(this)} className="nav=link" style={{alignSelf: 'flex-end'}}>
             Logout
           </a>
         </li>
