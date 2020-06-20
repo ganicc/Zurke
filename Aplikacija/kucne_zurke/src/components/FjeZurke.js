@@ -25,17 +25,21 @@ export const prikazSvihZurki = () => {
     .get("zurke/")
     .then((res) => {
       console.log(res.data);
-      return res.data;
+      return res.data
     })
     .catch((err) => console.log("Error:" + err));
 };
 
 
-export const prikazZurke = () => {
+export const prikazZurke = (nazivZurke) => {
   return axios
-    .get("zurke/prikaz")
+    .get("zurke/")
     .then((res) => {
+      const zurke=res.data;
+      const filtriraneZurke=zurke.filter(zurka=>zurka.naziv===nazivZurke);
       console.log(res.data);
+      console.log(filtriraneZurke);
+      return filtriraneZurke;
     })
     .catch((err) => console.log("Error:" + err));
 };

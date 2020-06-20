@@ -8,10 +8,8 @@ import jwt_decode from "jwt-decode";
 export default class ProfilZurke extends Component {
   constructor() {
     super();
-    const token = localStorage.usertoken;
-    const decoded = jwt_decode(token);
     this.state = {
-      organizator: decoded.ime,
+      organizator: "",
       naziv: "",
       opis: "",
       datumOdrzavanja: new Date(),
@@ -20,30 +18,22 @@ export default class ProfilZurke extends Component {
     };
   }
   componentDidMount() {
-    const Zurka={
-      organizator:this.state.organizator,
-      naziv: "Zarkova zurka 4",
-      opis: this.state.organizator,
-      datumOdrzavanja: this.state.datumOdrzavanja,
-      tipZurke: this.state.tipZurke,
-      brojljudi: this.state.brojljudi,
-    };
-    //const naziv="Zarkova zurka 4";
+    const naziv="Miloseva zurka";
 
-    prikazZurke(Zurka).then((res) => {
-      if (res) {
+    prikazZurke(naziv).then(res=>{
+      if(res){
+        const data=res;
         this.setState({
-          organizator:this.state.organizator,
-          naziv: res.data.naziv,
-          opis: res.data.opis,
-          datumOdrzavanja: res.data.datumOdrzavanja,
-          tipZurke: res.data.tipZurke,
-          brojljudi: res.data.brojljudi
+          organizator:data[0].organizator,
+          naziv:data[0].naziv,
+          opis:data[0].opis,
+          datumOdrzavanja:new Date(data[0].datumOdrzavanja),
+          tipZurke:data[0].tipZurke,
+          brojljudi:data[0].brojljudi
         })
+        
       }
-    });
-    
-  
+    })   
   }
 
   render() {

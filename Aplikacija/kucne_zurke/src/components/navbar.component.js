@@ -29,7 +29,7 @@ class Navbar extends Component {
     const userLink = (
       <ul className="navbar-nav">
       <li className="nav-item">
-          <Link to="/sveZurke" className="nav-link">
+          <Link to="/zurke" className="nav-link">
             Aktuelne zurke
           </Link>
         </li>
