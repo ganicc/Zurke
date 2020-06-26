@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="../stilovi/style.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  </head>
+  <body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    
+  <a class="navbar-brand" href="#">Kucne zurke</a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+        
+         <li class="nav-item">
+          <a class="nav-link" href="/dashboard">Pocetna</a>
+        </li>
+  </ul>
+  <form class="form-inline my-2 my-lg-0">
+    <a href="/users/logout" class="btn btn-secondary">Odjavi se</a>    
+  </form>
+  </div>
+</nav>
+    <form action="/zurke/organizujzurku" method="POST">
+  <div style="width: 100%; height: 100%; background-image:url('https://i.imgur.com/Zurx97n.jpg');   background-repeat: no-repeat;background-attachment: fixed;background-size: 100% 100%; height: 100%; padding-top: 60px;">
+    <div class="whole" style="height:700px; width:100%">
+        <div class="zakazivanje red">
+          <div class="card carddd" style="background-color: #ffcccc; width: 18rem;">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default">Organizator</span>
+              </div>
+              <input type="text" class="form-control" aria-label="Sizing example input" value="<%=name%>" id="organizator" name="organizator" aria-describedby="inputGroup-sizing-default">
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default">Adresa</span>
+              </div>
+              <input type="text" class="form-control" aria-label="Sizing example input" id="adresa" name="adresa" aria-describedby="inputGroup-sizing-default">
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default">Vreme</span>
+              </div>
+              <input type="text" class="form-control" aria-label="Sizing example input" id="vreme" name="vreme" aria-describedby="inputGroup-sizing-default">
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default">Datum</span>
+              </div>
+              <input type="date" class="form-control" aria-label="Sizing example input" id="datum" name="datum" aria-describedby="inputGroup-sizing-default">
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default">Muzika</span>
+              </div>
+              <input type="text" class="form-control" aria-label="Sizing example input" id="muzika" name="muzika" aria-describedby="inputGroup-sizing-default">
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default">Broj ljudi</span>
+              </div>
+              <input type="text" class="form-control" aria-label="Sizing example input" id="brojljudi" name="brojljudi" aria-describedby="inputGroup-sizing-default">
+            </div>
+            <div>
+              <button type="submit" style="background-color: #ffcccc;"class="btn btn-primary btn-block">Prijavi se</button>  
+            </div>
+      </div>
+          </div>
+            
+    </div>
+    
+</div>
+</form>
+</body>
+</html>

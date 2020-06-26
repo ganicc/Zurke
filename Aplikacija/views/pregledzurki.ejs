@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="../stilovi/style.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="stilovi/style.css">
+  </head>
+  <body>
+    
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    
+  <a class="navbar-brand" href="#">Kucne zurke</a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+         <li class="nav-item">
+          <a class="nav-link" href="/dashboard">Pocetna</a>
+        </li>
+  </ul>
+  <form class="form-inline my-2 my-lg-0">
+    <a href="/users/logout" class="btn btn-secondary">Odjavi se</a>    
+  </form>
+  </div>
+</nav>
+<div class="red">
+  <% zurka.forEach(function(zurka){ %>
+    <form action="/users/update" method="POST">
+    <div class="card text-center">
+      <div class="card-header">
+        Organizator: <%=zurka.organizator%>
+      </div>
+      <div class="card-body">
+        <p class="card-textt">Adresa: <%=zurka.adresa%> </br> Vreme: <%=zurka.vreme%> </br> Broj ljudi: <%=zurka.brojljudi%> </br> Muzika: <%=zurka.muzika%></p>
+        <input class="nevidljivo" name="name" value="<%=zurka.organizator%>"></input>
+        <button type="submit" style="background-color: #ffcccc;"class="btn btn-primary btn-block">Odazovi se</button> 
+      </div>
+      <div class="card-footer text-muted">
+        <%=zurka.datum%>
+      </div>
+    </div>
+  </form>
+    <% }); %> 
+  </div>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<% if(error_msg != '') { %>
+    <div  id="alert" class="alert alert-danger">
+      <strong>Greska!</strong> <%= error_msg %>
+      <span class="close" id="close" onclick="zatvori()">&times;</span>
+    </div>
+<% } %>
+
+<% if(dogadjaj==true) { %>     
+  <div id="alert" class="alert alert-info">
+    <strong>Info!</strong> Neko zeli da vam dodje na zurku!
+    <span class="close" id="close" onclick="zatvori()">&times;</span>
+  </div>  
+<% } %>
+
+<script>
+function zatvori(){
+  var test=document.getElementById('alert');
+  test.style.display="none";
+}
+</script>
+

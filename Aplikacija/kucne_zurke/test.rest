@@ -1,9 +1,0 @@
-GET http://localhost:5000/users/admin
-Content-Type: application/json
-
-{
-    "korisnickoIme": "admin",
-    "sifra": "123"
-}
-
-
