@@ -126,4 +126,99 @@ router.post('/update',(req,res,next)=>{
     
 })
 
+router.post('/changepassword',(req,res,next)=>
+{
+    const { passwordchange, passwordchange2, passwordchange3 } = req.body
+    var id;
+    let errors=[]
+    User.findOne({name:req.body.name}).then(user => 
+    {
+        bcrypt.compare(passwordchange, user.password, (err, isMatch) => 
+        {
+            if(err) 
+            {                
+                req.flash('error_msg','Doslo je do greske prilikom promene lozinke.')
+                res.redirect('/users/profile')
+                return;
+            }
+            if(isMatch)
+            {
+                if(passwordchange2 !== passwordchange3)
+                {
+                    req.flash('error_msg','Unete sifre se ne poklapaju.')
+                    res.redirect('/users/profile')
+                    return;
+                }
+                if(passwordchange2.length < 6)
+                {
+                    req.flash('error_msg','Nova sifra mora biti duza od 6 karaktera.')
+                    res.redirect('/users/profile')
+                    return;
+                }
+                id=user._id;
+                bcrypt.genSalt(10, (err, salt) => 
+                        bcrypt.hash(passwordchange2, salt, (err, hash) =>
+                            User.findByIdAndUpdate({_id:id},{password:hash},function(err, result) {
+                            if (err) 
+                            {
+                                req.flash('error_msg','Doslo je do greske prilikom menjanja lozinke.')
+                                res.redirect('/users/profile')
+                                return;
+                            } 
+                            else 
+                            {
+                                req.flash('success_msg','Uspesno ste promenili lozinku.')
+                                res.redirect('/users/profile')
+                                return;
+                            }
+                        })
+                        ))
+            }
+            else
+            {
+                req.flash('error_msg','Trenutna sifra nije ispravna.')
+                res.redirect('/users/profile')
+                return;
+            }
+        })
+    }) 
+    
+})
+
+router.post('/changeusername',(req,res,next)=>
+{
+    const { namechange } = req.body
+    console.log(namechange)
+    var id;
+    let errors=[]
+    User.findOne({name:namechange}).then(user => 
+    {
+        console.log(user);
+        if(!user) 
+        {
+            User.findOne({name:req.body.name}).then(user=>{
+                id=user._id;
+                User.findByIdAndUpdate({_id:id},{name:namechange},function(err, result) {
+                    if (err) 
+                    {
+                        console.log('Greska')
+                        res.redirect('/users/profile')
+                        return;
+                    } 
+                    else 
+                    {
+                        console.log('Uspesno')
+                        res.redirect('/users/profile')
+                        return;
+                    }
+                })
+            })
+        }
+        else{
+            res.redirect('/users/profile')
+            return;
+        }
+    })   
+})
+
 module.exports = router;

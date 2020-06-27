@@ -29,21 +29,18 @@
   </form>
   </div>
 </nav>
-<div class="red">
+  <div id="row" class="row">
   <% zurka.forEach(function(zurka){ %>
-    <form action="/users/update" method="POST">
-    <div class="card text-center">
-      <div class="card-header">
-        Organizator: <%=zurka.organizator%>
-      </div>
-      <div class="card-body">
-        <p class="card-textt">Adresa: <%=zurka.adresa%> </br> Vreme: <%=zurka.vreme%> </br> Broj ljudi: <%=zurka.brojljudi%> </br> Muzika: <%=zurka.muzika%></p>
-        <input class="nevidljivo" name="name" value="<%=zurka.organizator%>"></input>
-        <button type="submit" style="background-color: #ffcccc;"class="btn btn-primary btn-block">Odazovi se</button> 
-      </div>
-      <div class="card-footer text-muted">
-        <%=zurka.datum%>
-      </div>
+    <div class="list-group">
+      <a href="#" class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1"><%=zurka.organizator%></h5>
+        </div>
+        <p class="mb-1">Datum: <%=zurka.datum%> </br> Vreme: <%=zurka.vreme%> </br> Muzika: <%=zurka.muzika%> </br> Broj ljudi: <%=zurka.brojljudi%></p>
+        <input class="nevidljivo" name="vodja" value="<%=zurka.organizator%>"></input>
+        <!--<input class="nevidljivo" name="name" value="<=name%>"></input>-->
+        <div class="btnRight"><button type="submit" class="btn btnnovi btn-primary">Odazovi se</button></div>
+      </a>
     </div>
   </form>
     <% }); %> 

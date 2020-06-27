@@ -56,6 +56,17 @@ app.get('/pregledzurki', function(req,res){
         })
     })
 })
+app.get('/_form_changepassword', function(req,res){
+    res.render('_form_changepassword',{
+        name: req.user.name
+    })
+})
+app.get('/_form_changeusername', function(req,res){
+    res.render('_form_changeusername',{
+        name: req.user.name
+        
+    })
+})
 
 
 const PORT = process.env.PORT || 3000;
