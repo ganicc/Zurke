@@ -21,9 +21,18 @@ const UserSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    dogadjaj:{
-        type: Boolean,
-        default: false
+    routerData:{
+        'Dogadjaj':{
+            type: Boolean,
+            default: false
+        },
+        'userReq':{
+            tpye:String
+        },
+        'Odgovor':{
+            type: Boolean,
+            default: false
+        },
     }
 });
 

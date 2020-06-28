@@ -21,8 +21,8 @@ img {vertical-align: middle;}
 {
   display:flex;
   flex-direction: row;
-  flex-grow:1;
   justify-content: center;
+  padding-top: 70px;
 }
 
 .list-group
@@ -37,11 +37,9 @@ img {vertical-align: middle;}
 
 .row, .row1
 {
-  flex-direction: column;
-  margin-top: 80px;
-  padding-left: 80px;
-  padding-right: 80px;
+  padding-top:40px;
   display: flex;
+  padding-left: 20px;
 }
 
 .card-body
@@ -67,6 +65,11 @@ img {vertical-align: middle;}
   margin: auto;
 }
 
+.topdiv
+{
+  padding-top: 70px;
+}
+
 .red {
   margin-top: 80px;
   padding-left: 80px;
@@ -75,18 +78,22 @@ img {vertical-align: middle;}
   flex-direction: column;
 }
 
-.novidiv
-{
-  display:flex;
-  flex-direction: row;
-}
-
 .cardd{
+  display: flex;
   flex-grow: 1;
   padding-left: 20px;
   padding-right: 20px;
   flex-direction: row;
   border:2px solid #fff;
+}
+
+.slideshow-container
+{
+  margin-top:2%;
+}
+
+.novidiv{
+  display:flex;
 }
 
 .card-body{
@@ -96,11 +103,23 @@ img {vertical-align: middle;}
   padding: 10px;
   font-size: 50px;
 }
+
+.korisnici{
+  padding-top: 70px;
+}
+
 .card-title{
   padding: 10px;
   color: white;
   font-size: 50px;
 }
+
+.whole
+{
+  display:flex;
+  justify-content: center;
+}
+
 .card-textt{
   font-size: 20px;
 }
@@ -114,7 +133,6 @@ img {vertical-align: middle;}
   padding-top:30px;
   padding-left: 100px;
   padding-right: 100px;
-  padding-bottom: 40px;
   text-align: center;
   color:white;
 }

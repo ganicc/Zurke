@@ -99,32 +99,25 @@ router.get('/logout', (req,res) => {
 
 router.post('/update',(req,res,next)=>{
     var id;
-    User.findOne({name:req.body.name}).then(user=>{
+    console.log("Provera korisnika: " + req.body.organizator);
+    if(req.body.name==req.body.organizator){
+        req.flash('error_msg','Ne mozete reagovati na svoj dogadjaj');
+        res.redirect('/dashboard');
+        return;
+    }
+    User.findOne({name:req.body.organizator}).then(user=>{
         id=user._id;
-        console.log
-        User.findByIdAndUpdate({_id:id},{dogadjaj:true},function(err, result) {
+        User.findByIdAndUpdate({_id:id},{routerData:{Dogadjaj:true,userReq:req.body.name}},function(err, result) {
             if (err) {
                 res.send(err);
               } else {
-                    Zurka.findOne({organizator:user.name}).then(zurka=>{
-                        id=zurka._id;
-                        var novibroj = zurka.brojljudi-1;
-                        Zurka.findByIdAndUpdate({_id:id},{brojljudi:novibroj},function(err, result){
-                            if(err)
-                            {
-                                res.send(err);
-                            }
-                            else
-                            {
+
+                                console.log("---> Uspesno! <---")
                                 res.redirect('/dashboard')
                             }
                         })
                     })
-              }        
-        })
-    }) 
-    
-})
+              }  )     
 
 router.post('/changepassword',(req,res,next)=>
 {
@@ -219,6 +212,84 @@ router.post('/changeusername',(req,res,next)=>
             return;
         }
     })   
+})
+
+
+router.post('/delete',(req,res)=>{
+    console.log(req.body)
+    User.findByIdAndDelete({"_id":req.body.id},function(err, result) {
+        if (err) {
+          res.send(err);
+        } else {
+           
+            res.redirect(req.get('referer'));
+        }
+    })
+})
+
+
+router.post('/updateReverse',(req,res,next)=>{
+    var id;
+    
+    console.log("UpdateReverse "+req.user.routerData.userReq)
+
+    User.findOne({name:req.user.routerData.userReq}).then(user=>{
+    User.findByIdAndUpdate({_id:user._id},{routerData:{Odgovor:true}},function(err, result){
+        if (err) {
+            res.send(err);
+          } else {
+            Zurka.findOne({organizator:req.body.name}).then(zurka=>{
+            id=zurka._id;
+            console.log(zurka);
+            var novibroj = zurka.brojljudi-1;
+            Zurka.findByIdAndUpdate({_id:id},{brojljudi:novibroj},function(err, result){
+                if(err)
+                {
+                    res.send(err);
+                }
+                else
+                {
+                    console.log("UPDATE JE ODGOVOR")
+                }
+              
+          })
+        })
+    }
+    })
+    })
+ 
+    User.findOne({name:req.body.name}).then(user=>{
+
+        id=user._id;
+        User.findByIdAndUpdate({_id:id},{routerData:{Dogadjaj:false}},function(err, result) {
+            if (err) {
+              res.send(err);
+            } else {
+                
+               
+                res.redirect('/dashboard')
+            }
+        })
+    })
+})
+
+
+router.post('/updateOdgovor',(req,res,next)=>{
+    var id; 
+    User.findOne({name:req.body.name}).then(user=>{
+
+        id=user._id;
+        User.findByIdAndUpdate({_id:id},{routerData:{Odgovor:false}},function(err, result) {
+            if (err) {
+              res.send(err);
+            } else {
+                
+               
+                res.redirect('/dashboard')
+            }
+        })
+    })
+    
 })
 
 module.exports = router;

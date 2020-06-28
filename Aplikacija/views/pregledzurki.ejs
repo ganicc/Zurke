@@ -29,20 +29,25 @@
   </form>
   </div>
 </nav>
-  <div id="row" class="row">
+  <div id="row" class="topdiv">
   <% zurka.forEach(function(zurka){ %>
+    <form action="/users/update" method="POST">
     <div class="list-group">
       <a href="#" class="list-group-item list-group-item-action">
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1"><%=zurka.organizator%></h5>
         </div>
         <p class="mb-1">Datum: <%=zurka.datum%> </br> Vreme: <%=zurka.vreme%> </br> Muzika: <%=zurka.muzika%> </br> Broj ljudi: <%=zurka.brojljudi%></p>
-        <input class="nevidljivo" name="vodja" value="<%=zurka.organizator%>"></input>
-        <!--<input class="nevidljivo" name="name" value="<=name%>"></input>-->
-        <div class="btnRight"><button type="submit" class="btn btnnovi btn-primary">Odazovi se</button></div>
+        <input class="nevidljivo" name="organizator" value="<%=zurka.organizator%>"></input>
+        <input class="nevidljivo" name="name" value="<%=name%>"></input>
+        <div class="btnRight"><button type="submit" class="btn btnnovi btn-primary">Odazovi se</button></div></form>
+        <form action="/zurke/delete" method="POST">
+          <input class="nevidljivo" name="id" value="<%=zurka._id%>"></input>
+          <%- include('./partials/admin') %>
+        </form>
       </a>
     </div>
-  </form>
+    </form>
     <% }); %> 
   </div>
   </body>

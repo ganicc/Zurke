@@ -52,7 +52,8 @@ app.use('/zurke', require('./routes/zurke'))
 app.get('/pregledzurki', function(req,res){
     Zurka.find().then(zurka=>{
         res.render('pregledzurki',{
-            zurka:zurka
+            zurka:zurka,
+            name: req.user.name
         })
     })
 })

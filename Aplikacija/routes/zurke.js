@@ -19,4 +19,18 @@ router.post('/organizujzurku', (req,res)=>{
             .catch(err => console.log(err))
 })
 
+router.post('/delete',(req,res)=>{
+    Zurka.findByIdAndDelete({"_id":req.body.id},function(err, result) {
+        if (err) {
+          res.send(err);
+        } else {
+            console.log('Uspeo.')
+            res.redirect(req.get('referer'));
+        }
+    })
+    
+
+})
+
+
 module.exports=router
