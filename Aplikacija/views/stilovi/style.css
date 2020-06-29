@@ -99,8 +99,12 @@ img {vertical-align: middle;}
 .card-body{
   text-align: center;
 }
+.card-texttt
+{
+  color:white;
+}
 .card-titlee{
-  padding: 10px;
+  color: white;
   font-size: 50px;
 }
 
@@ -110,7 +114,6 @@ img {vertical-align: middle;}
 
 .card-title{
   padding: 10px;
-  color: white;
   font-size: 50px;
 }
 
@@ -125,7 +128,6 @@ img {vertical-align: middle;}
 }
 .card-text{
   font-size: 20px;
-  color: white;
 }
 
 .naslov{

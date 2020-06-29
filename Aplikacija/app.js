@@ -16,7 +16,7 @@ const db = require('./config/keys').MongoURI;
 
 // Connect
 mongoose.connect(db, { useNewUrlParser: true })
-    .then(() => console.log('Connected to Mongo'))
+    .then(() => console.log('Povezan na MongoDB...'))
     .catch(err => console.log(err));
 
 //EJS
@@ -72,4 +72,4 @@ app.get('/_form_changeusername', function(req,res){
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, console.log('ide gas ali malo manji'))
+app.listen(PORT, console.log('Povezan na port 3000...'))

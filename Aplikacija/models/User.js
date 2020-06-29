@@ -32,7 +32,7 @@ const UserSchema = new mongoose.Schema({
         'Odgovor':{
             type: Boolean,
             default: false
-        },
+        }
     }
 });
 

@@ -40,11 +40,12 @@
         <p class="mb-1">Datum: <%=zurka.datum%> </br> Vreme: <%=zurka.vreme%> </br> Muzika: <%=zurka.muzika%> </br> Broj ljudi: <%=zurka.brojljudi%></p>
         <input class="nevidljivo" name="organizator" value="<%=zurka.organizator%>"></input>
         <input class="nevidljivo" name="name" value="<%=name%>"></input>
-        <div class="btnRight"><button type="submit" class="btn btnnovi btn-primary">Odazovi se</button></div></form>
+        <div><button type="submit" style="float: right" class="btn btnnovi btn-primary">Odazovi se</button></form>
         <form action="/zurke/delete" method="POST">
           <input class="nevidljivo" name="id" value="<%=zurka._id%>"></input>
           <%- include('./partials/admin') %>
         </form>
+      </div>
       </a>
     </div>
     </form>

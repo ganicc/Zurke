@@ -117,7 +117,7 @@ router.post('/update',(req,res,next)=>{
                             }
                         })
                     })
-              }  )     
+              })     
 
 router.post('/changepassword',(req,res,next)=>
 {

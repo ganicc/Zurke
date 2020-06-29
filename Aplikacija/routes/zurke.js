@@ -12,6 +12,12 @@ router.post('/organizujzurku', (req,res)=>{
         muzika: req.body.muzika,
         brojljudi: req.body.brojljudi
     })
+    if(zurka.brojljudi<=0)
+    {
+        req.flash('error_msg','Ne mozete kreirati zurku bez ljudi.');
+        res.redirect('/dashboard');
+        return;
+    }
     zurka.save()
             .then(zurka => {
                 res.redirect('/dashboard')
