@@ -30,13 +30,13 @@
   </div>
 </nav>
             <div class="glavniDivProfila">
-                  <div class="card" style="width: 18rem;">
+                  <div class="dark-card" style="width: 18rem;opacity: .9;">
                     <div class="card-body">
-                      <h5 class="card-titlee"><%= name %></h5>
+                      <h5 class="card-title"><%= name %></h5>
                       <p class="card-textt"><%=email%></p>
                     </div>
-                    <ul class="list-group list-group-flush">
-                      <li class="list-group-item">Datum prijave: <%= date.getDate() %>.<%= date.getMonth() %>.<%=date.getFullYear()%>.</li>
+                    <ul class="card-body">
+                      <li class="card-textt">Datum prijave: <%= date.getDate() %>.<%= date.getMonth() %>.<%=date.getFullYear()%>.</li>
                     </ul>
                     <div class="card-body">
                       <a href="#" id="myRef1" class="card-link">Promeni sifru</a>
