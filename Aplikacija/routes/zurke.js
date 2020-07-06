@@ -1,16 +1,39 @@
 const express=require('express')
 const router=express.Router()
 
+const multer=require('multer');
+const storage=multer.diskStorage({
+    destination: function(req, file, cb){
+        cb(null,'./uploads/');
+    },
+    filename: function(req, file, cb){
+        cb(null, new Date().toISOString().replace(/:|\./g,'') + ' - ' + file.originalname);
+
+    }
+})
+
+const fileFilter= (req, file, cb)=>{
+    if( file.mimetype === 'image/jpeg' || file.mimetype === 'image/png'){
+        cb(null, true);
+    }
+    else{
+        cb(null, false);
+    }
+}
+
+const upload= multer({storage: storage, fileFilter : fileFilter});
+
 const Zurka = require('../models/Zurka')
 
-router.post('/organizujzurku', (req,res)=>{
-    const zurka = new Zurka({
+router.post('/organizujzurku',upload.single('slikaZurke'), (req,res)=>{
+      const zurka = new Zurka({
         organizator: req.body.organizator,
         adresa: req.body.adresa,
         vreme: req.body.vreme,
         datum: req.body.datum,
         muzika: req.body.muzika,
-        brojljudi: req.body.brojljudi
+        brojljudi: req.body.brojljudi,
+        slikaZurke: req.file.path
     })
     if(zurka.brojljudi<=0)
     {
@@ -36,6 +59,10 @@ router.post('/delete',(req,res)=>{
     })
     
 
+})
+
+router.get('/svezurke', (req,res)=>{
+    Zurka.find().then(zurke=>res.json(zurke)).catch((err) => res.status(400).json("Error: " + err));
 })
 
 

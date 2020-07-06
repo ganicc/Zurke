@@ -29,7 +29,7 @@
   </form>
   </div>
 </nav>
-    <form action="/zurke/organizujzurku" method="POST">
+    <form action="/zurke/organizujzurku" method="POST" enctype="multipart/form-data">
     <div class="whole" >
         <div class="zakazivanje red" >
           <div class="card carddd" style="width: 18rem;">
@@ -85,6 +85,12 @@
                 <span class="input-group-text" id="inputGroup-sizing-default">Broj ljudi</span>
               </div>
               <input type="number" class="form-control" aria-label="Sizing example input" id="brojljudi" name="brojljudi" aria-describedby="inputGroup-sizing-default">
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default">Slika</span>
+              </div>
+              <input type="file" class="form-control" aria-label="Sizing example input" id="slikaZurke" name="slikaZurke" aria-describedby="inputGroup-sizing-default">
             </div>
             <div>
               <button type="submit" style="  background-color: rgba(216, 97, 97, 0.8);" class="btn btn-block btnnovi btn-primary">Organizuj</button>  

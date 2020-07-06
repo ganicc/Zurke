@@ -30,6 +30,11 @@ const ZurkaSchema = new mongoose.Schema({
     {
         type: Number,
         required: true
+    },
+    slikaZurke:
+    {
+        type: String,
+        required: true
     }
 });
 

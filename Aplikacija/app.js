@@ -1,21 +1,25 @@
 const express = require('express');
 const expresLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
+const bodyParser=require("body-parser");
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
 const Zurka = require('./models/Zurka');
 
+
+
 const app = express()
 app.use(express.static(__dirname + '/views'));
-
+app.use(bodyParser.json());
+app.use('/uploads',express.static('uploads'));
 require('./config/passport')(passport);
 
 // Mongo
 const db = require('./config/keys').MongoURI;
 
 // Connect
-mongoose.connect(db, { useNewUrlParser: true })
+mongoose.connect(db, { useNewUrlParser: true,useUnifiedTopology: true  })
     .then(() => console.log('Povezan na MongoDB...'))
     .catch(err => console.log(err));
 

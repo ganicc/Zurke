@@ -37,7 +37,7 @@
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1"><%=zurka.organizator%></h5>
         </div>
-        <p class="mb-1">Datum: <%=zurka.datum%> </br> Vreme: <%=zurka.vreme%> </br> Muzika: <%=zurka.muzika%> </br> Broj ljudi: <%=zurka.brojljudi%></p>
+        <p class="mb-1"><img src="http://localhost:3000/<%= zurka.slikaZurke%>"/> </br>Datum: <%=zurka.datum%></br> Adresa: <%=zurka.adresa%></br> Vreme: <%=zurka.vreme%> </br> Muzika: <%=zurka.muzika%> </br> Broj ljudi: <%=zurka.brojljudi%></p>
         <input class="nevidljivo" name="organizator" value="<%=zurka.organizator%>"></input>
         <input class="nevidljivo" name="name" value="<%=name%>"></input>
         <div><button type="submit" style="float: right" class="btn btnnovi btn-primary">Odazovi se</button></form>
