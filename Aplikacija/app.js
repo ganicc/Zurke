@@ -6,6 +6,7 @@ const flash = require("connect-flash");
 const session = require("express-session");
 const passport = require("passport");
 const Zurka = require("./models/Zurka");
+const User = require("./models/User");
 
 const app = express();
 app.use(express.static(__dirname + "/views"));
@@ -63,6 +64,7 @@ app.get("/pregledzurki", function (req, res) {
     });
   });
 });
+
 app.get("/_form_changepassword", function (req, res) {
   res.render("_form_changepassword", {
     name: req.user.name,

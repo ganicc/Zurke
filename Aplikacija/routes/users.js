@@ -14,6 +14,24 @@ router.get("/login", (req, res) => {
 router.get("/register", (req, res) => {
   res.render("register");
 });
+router.get("/profilkorisnika", (req, res) => {
+  res.render("profilkorisnika");
+});
+
+router.post("/profilkorisnika", (req, res) => {
+  User.findOne({ name: req.body.organizator })
+    .then((user) => {
+      console.log(user);
+      if (user == null) {
+        res.redirect("/dashboard");
+      } else {
+        res.render("profilkorisnika", {
+          user: user,
+        });
+      }
+    })
+    .catch((err) => console.log(err));
+});
 
 router.post("/register", (req, res) => {
   const { name, email, password, password2 } = req.body;

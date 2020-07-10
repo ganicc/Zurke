@@ -35,7 +35,7 @@
     <div class="list-group">
       <a href="#" class="list-group-item list-group-item-action">
         <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1"><%=zurka.organizator%></h5>
+         <h5 class="mb-1"><%=zurka.organizator%></h5> 
         </div>
         <p class="mb-1"><img src="http://localhost:3000/<%= zurka.slikaZurke%>"/> </br>Datum: <%=zurka.datum%></br> Adresa: <%=zurka.adresa%></br> Vreme: <%=zurka.vreme%> </br> Muzika: <%=zurka.muzika%> </br> Broj ljudi: <%=zurka.brojljudi%></p>
         <input class="nevidljivo" name="organizator" value="<%=zurka.organizator%>"></input>
@@ -45,8 +45,15 @@
           <input class="nevidljivo" name="id" value="<%=zurka._id%>"></input>
           <%- include('./partials/admin') %>
         </form>
+        <form action="/users/profilkorisnika" method="POST">
+          <input class="nevidljivo" name="organizator" value="<%=zurka.organizator%>"></input>
+        <!-- <h5 class="mb-1"> Poseti profil ovog organizatora:</h5> 
+      <button type="submit" style="float: left" class="btn btnnovi btn-primary"><%=zurka.organizator%></button> -->
+      <%- include('./partials/profilkorisnika') %>
+    </form>
       </div>
       </a>
+     
     </div>
     </form>
     <% }); %> 
