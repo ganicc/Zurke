@@ -5,21 +5,26 @@
   </div>
 <% } %>
 
+
+
 <% if(Dogadjaj==true) { %>     
 <!--<div id="alert" class="alert alert-info">
   <strong>Info!</strong> Neko vam se odazvao na dogadjaj!
   <span class="close" id="close" onclick="zatvori()">&times;</span>
 </div>-->
+<div id="alert" class="alert alert-info">
 <form action="/users/updateReverse" method="POST">
-  <div class="alert alert-info">
     <strong>Info:  </strong><%=userReq%> vam se odazvao na dogadjaj.
     <button type="submit" class="btn btn-info" >Prihvati</button>
     <input class="nevidljivo" name="name" value="<%=name%>"></input>
-    <button type="submit" class="btn btn-info" style="float: right;" >
-      Zatvori</button>
-  </div>
-</form>
+    <span class="close" id="close" onclick="zatvori()">&times;</span>
+  </form>
+  <!-- <button type="submit" class="btn btn-info" style="float: right;" >
+    Zatvori</button> -->
+</div>
 <% } %>
+
+
 <% if(Odgovor==true) { %>     
 <!--<div id="alert" class="alert alert-info">
 <strong>Info!</strong> Neko vam se odazvao na dogadjaj!
@@ -43,3 +48,4 @@ var test=document.getElementById('alert');
 test.style.display="none";
 }
 </script>
+

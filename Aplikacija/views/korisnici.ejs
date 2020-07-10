@@ -62,10 +62,24 @@
               </div>
               <p class="mb-1">Korisnicko ime: <%=users.name%></br>Email: <%=users.email%></p>
               <input class="nevidljivo" name="id" value="<%=users._id%>"></input>
-              <button type="submit" class="btn btn-danger" style="float: right;">Delete</button>
-            </a> 
+             <%-include("./partials/brisi.ejs")%>
+            </form>
+          </a>
+            <form action="/users/pozovi" method="POST"> 
+              <a href="#" class="list-group-item list-group-item-action">
+              <input class="nevidljivo" name="korisnik" value="<%=name%>"></input>
+              <input class="nevidljivo" name="name" value="<%=users.name%>"></input>
+              <input class="nevidljivo" name="id" value="<%=users._id%>"> </input>
+              <button 
+               type="submit" style="float: right" class="btn btnnovi btn-primary">Pozovi korisnika na svoj događaj
+              </button>
+            </form>
+          
+          
+          </a> 
           </div>
-        </form>
+        
+    
         <% }); %> 
     </div>
   
