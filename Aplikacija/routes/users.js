@@ -43,6 +43,39 @@ router.post("/filter", (req, res) => {
     });
   });
 });
+router.post("/filterpomuzici", (req, res) => {
+  console.log("req.body", req.body);
+  console.log("req.body.muzika", req.body.muzika);
+  Zurka.find({ muzika: req.body.muzika }).then((zurka) => {
+    console.log(zurka);
+    res.render("pregledzurki", {
+      zurka: zurka,
+      name: req.user.name,
+    });
+  });
+});
+router.post("/filterpoadresi", (req, res) => {
+  console.log("req.body", req.body);
+  console.log("req.body.adresa", req.body.adresa);
+  Zurka.find({ adresa: req.body.adresa }).then((zurka) => {
+    console.log(zurka);
+    res.render("pregledzurki", {
+      zurka: zurka,
+      name: req.user.name,
+    });
+  });
+});
+router.post("/filterpodatumu", (req, res) => {
+  console.log("req.body", req.body);
+  console.log("req.body.datum", req.body.datum);
+  Zurka.find({ datum: req.body.datum }).then((zurka) => {
+    console.log(zurka);
+    res.render("pregledzurki", {
+      zurka: zurka,
+      name: req.user.name,
+    });
+  });
+});
 
 router.post("/register", (req, res) => {
   const { name, email, password, password2 } = req.body;

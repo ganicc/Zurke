@@ -29,18 +29,59 @@
   </form>
   </div>
 </nav>
+
   <div id="row" class="topdiv">
-    <div id="row" class="filterdiv">
-      <h5 class="mb-1">Ime organizatora</h5>
+    <div id="row" class="filterdiv">   
       <form action="/users/filter" method="POST">
-        <!-- <input name="organizatorzurke" value="<%=zurka.organizator%>"></input> -->
         <input name="organizatorzurke" ></input>
-        <div><button type="submit" style="float: left;" class="btn btnnovi btn-primary">Filtriraj</button></form>
+        <div><button type="submit" style="float: left;" class="btn btnnovi btn-primary">Filtriraj po imenu organizatora</button></form>
       </form>
-     
     </div>
+
+    <div id="row" class="topdiv">
+      <div id="row" class="filterdiv">
+        <form action="/users/filterpomuzici" method="POST">
+        
+          <select type="text" id="muzika" name="muzika" >
+            <option>Disco</option>
+            <option>Pop</option>
+            <option>Rock</option>
+            <option>Trap</option>
+            <option>RnB</option>
+            <option>Salsa</option>
+            <option>Folk</option>
+            <option>Pank</option>
+          </select>
+          <div><button type="submit" style="float: left;" class="btn btnnovi btn-primary">Filtriraj po muzici</button></form>
+        </form>
+      </div>
+
+      <div id="row" class="topdiv">
+        <div id="row" class="filterdiv">
+          <form action="/users/filterpoadresi" method="POST">
+            <input name="adresa" ></input>
+            <div><button type="submit" style="float: left;" class="btn btnnovi btn-primary">Filtriraj po adresi</button></form>
+          </form>
+        </div>
+
+        <div id="row" class="topdiv">
+          <div id="row" class="filterdiv">
+            <form action="/users/filterpodatumu" method="POST">
+              <!-- <input name="datum" ></input> -->
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Datum</span>
+                </div>
+                <input type="date" aria-label="Sizing example input" id="datum" name="datum" aria-describedby="inputGroup-sizing-default">
+              </div>
+              <div><button type="submit" style="float: left;" class="btn btnnovi btn-primary">Filtriraj po datumu</button></form>
+            </form>
+          </div>
+      
+      
   <% zurka.forEach(function(zurka){ %>
-    <form action="/users/update" method="POST">
+    
+    <form action="/users/update" method="POST">  
     <div class="list-group">
       <a href="#" class="list-group-item list-group-item-action">
         <div class="d-flex w-100 justify-content-between">
