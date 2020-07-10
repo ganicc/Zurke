@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const User = require("../models/User");
 const passport = require("passport");
-const Zurka = require("../models/Zurka");
+var Zurka = require("../models/Zurka");
 
 //Login page
 router.get("/login", (req, res) => {
@@ -31,6 +31,17 @@ router.post("/profilkorisnika", (req, res) => {
       }
     })
     .catch((err) => console.log(err));
+});
+router.post("/filter", (req, res) => {
+  console.log("req.body", req.body);
+  console.log("req.body.organizatorzurke", req.body.organizatorzurke);
+  Zurka.find({ organizator: req.body.organizatorzurke }).then((zurka) => {
+    console.log(zurka);
+    res.render("pregledzurki", {
+      zurka: zurka,
+      name: req.user.name,
+    });
+  });
 });
 
 router.post("/register", (req, res) => {

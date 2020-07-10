@@ -64,7 +64,6 @@ app.get("/pregledzurki", function (req, res) {
     });
   });
 });
-
 app.get("/_form_changepassword", function (req, res) {
   res.render("_form_changepassword", {
     name: req.user.name,

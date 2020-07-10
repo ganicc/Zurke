@@ -30,6 +30,15 @@
   </div>
 </nav>
   <div id="row" class="topdiv">
+    <div id="row" class="filterdiv">
+      <h5 class="mb-1">Ime organizatora</h5>
+      <form action="/users/filter" method="POST">
+        <!-- <input name="organizatorzurke" value="<%=zurka.organizator%>"></input> -->
+        <input name="organizatorzurke" ></input>
+        <div><button type="submit" style="float: left;" class="btn btnnovi btn-primary">Filtriraj</button></form>
+      </form>
+     
+    </div>
   <% zurka.forEach(function(zurka){ %>
     <form action="/users/update" method="POST">
     <div class="list-group">
