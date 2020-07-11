@@ -30,6 +30,7 @@
   </div>
 </nav>
 
+<div class="horizontalno">
   <div id="row" class="topdiv">
     <div id="row" class="filterdiv">   
       <form action="/users/filter" method="POST">
@@ -37,6 +38,7 @@
         <div><button type="submit" style="float: left;" class="btn btnnovi btn-primary">Filtriraj po imenu organizatora</button></form>
       </form>
     </div>
+  </div>
 
     <div id="row" class="topdiv">
       <div id="row" class="filterdiv">
@@ -55,6 +57,7 @@
           <div><button type="submit" style="float: left;" class="btn btnnovi btn-primary">Filtriraj po muzici</button></form>
         </form>
       </div>
+    </div>
 
       <div id="row" class="topdiv">
         <div id="row" class="filterdiv">
@@ -63,6 +66,7 @@
             <div><button type="submit" style="float: left;" class="btn btnnovi btn-primary">Filtriraj po adresi</button></form>
           </form>
         </div>
+      </div>
 
         <div id="row" class="topdiv">
           <div id="row" class="filterdiv">
@@ -77,8 +81,10 @@
               <div><button type="submit" style="float: left;" class="btn btnnovi btn-primary">Filtriraj po datumu</button></form>
             </form>
           </div>
-      
-      
+  </div>
+</div>
+
+<div class="topdiv">
   <% zurka.forEach(function(zurka){ %>
     
     <form action="/users/update" method="POST">  
@@ -110,13 +116,12 @@
     <input class="nevidljivo" name="name" value="<%=name%>"></input>
     <button type="submit" style="float: left" class="btn btnnovi btn-primary">Još informacija</button>
     </form>
-
-
     </div>
     </a>
     </div>
     </form>
     <% }); %> 
+    </div>
   </div>
   </body>
 </html>

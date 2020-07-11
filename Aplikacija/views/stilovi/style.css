@@ -1,15 +1,23 @@
-* {box-sizing: border-box}
-body {font-family: Verdana, sans-serif; margin:0}
-.mySlides {display: none}
-img {vertical-align: middle;}
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: Verdana, sans-serif;
+  margin: 0;
+}
+.mySlides {
+  display: none;
+}
+img {
+  vertical-align: middle;
+}
 
-.container-fluid{
+.container-fluid {
   overflow: hidden;
   padding: 0;
 }
 
-.btnnovi
-{
+.btnnovi {
   background-color: rgba(216, 97, 97, 0.8);
 }
 
@@ -17,44 +25,43 @@ img {vertical-align: middle;}
   visibility: hidden;
 }
 
-.glavniDivProfila
-{
-  display:flex;
+.glavniDivProfila {
+  display: flex;
   flex-direction: row;
   justify-content: center;
   padding-top: 70px;
 }
-
-.list-group
-{
-  margin-bottom: 2%;
+.horizontalno {
+  padding-left: 10%;
+}
+.list-group {
+  margin-bottom: 5%;
+  margin-top: 2%;
+  margin-right: 4%;
 }
 
-.btnRight
-{
+.btnRight {
   float: right;
 }
 
-.row, .row1
-{
-  padding-top:40px;
+.row,
+.row1 {
+  padding-top: 40px;
   display: flex;
   padding-left: 20px;
+  padding-right: 20px;
 }
 
-.card-body
-{
+.card-body {
   text-align: center;
 }
 
-.card
-{
+.card {
   margin-top: 2%;
 }
 
-.red2
-{
-  display:flex;
+.red2 {
+  display: flex;
   flex-direction: row;
 }
 
@@ -65,8 +72,7 @@ img {vertical-align: middle;}
   margin: auto;
 }
 
-.topdiv
-{
+.topdiv {
   padding-top: 70px;
 }
 
@@ -78,69 +84,67 @@ img {vertical-align: middle;}
   flex-direction: column;
 }
 
-.cardd{
+.cardd {
   display: flex;
   flex-grow: 1;
   padding-left: 20px;
   padding-right: 20px;
   flex-direction: row;
-  border:2px solid #fff;
+  border: 2px solid #fff;
 }
 
-.slideshow-container
-{
-  margin-top:2%;
+.slideshow-container {
+  margin-top: 2%;
 }
 
-.novidiv{
-  display:flex;
+.novidiv {
+  display: flex;
 }
 
-.card-body{
+.card-body {
   text-align: center;
 }
-.card-texttt
-{
-  color:white;
+.card-texttt {
+  color: white;
 }
-.card-titlee{
+.card-titlee {
   color: white;
   font-size: 50px;
 }
 
-.korisnici{
+.korisnici {
   padding-top: 70px;
 }
 
-.card-title{
+.card-title {
   padding: 10px;
   font-size: 50px;
 }
 
-.whole
-{
-  display:flex;
+.whole {
+  display: flex;
   justify-content: center;
 }
 
-.card-textt{
+.card-textt {
   font-size: 20px;
 }
-.card-text{
+.card-text {
   font-size: 20px;
 }
 
-.naslov{
+.naslov {
   flex-grow: 1;
-  padding-top:30px;
+  padding-top: 30px;
   padding-left: 100px;
   padding-right: 100px;
   text-align: center;
-  color:white;
+  color: white;
 }
 
 /* Next & previous buttons */
-.prev, .next {
+.prev,
+.next {
   cursor: pointer;
   position: absolute;
   top: 50%;
@@ -162,8 +166,9 @@ img {vertical-align: middle;}
 }
 
 /* On hover, add a black background color with a little bit see-through */
-.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 /* Caption text */
@@ -198,7 +203,8 @@ img {vertical-align: middle;}
   transition: background-color 0.6s ease;
 }
 
-.active, .dot:hover {
+.active,
+.dot:hover {
   background-color: #717171;
 }
 
@@ -211,16 +217,28 @@ img {vertical-align: middle;}
 }
 
 @-webkit-keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* On smaller screens, decrease text size */
 @media only screen and (max-width: 300px) {
-  .prev, .next,.text {font-size: 11px}
+  .prev,
+  .next,
+  .text {
+    font-size: 11px;
+  }
 }
