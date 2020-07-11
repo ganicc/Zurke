@@ -46,14 +46,14 @@
           
         </ul>
         <form class="form-inline my-2 my-lg-0">
-         <a href="/users/logout" class="btn btn-secondary">Logout</a>
+         <a href="/users/logout" class="btn btn-secondary">Odjava</a>
        </form>
         </div>
        </nav>
        <div id="row" class="topdiv">
         <div id="row" class="filterdiv">   
           <form action="/users/filterkorisnika" method="POST">
-            <div style="margin-left: 5%;"><button type="submit" style="float: left;" class="btn btnnovi btn-primary">Pronadji korisnika po korisničkom imenu</button></form>
+            <div style="margin-left: 5%;"><button type="submit" style="float: left;" class="btn btnnovi btn-primary">Pronađi korisnika po korisničkom imenu: </button></form>
               <input name="ime_korisnika" ,style="margin-left: 5%;" ></input>
             </form>
         </div>
@@ -67,7 +67,7 @@
                 <h5 class="mb-1">Informacije o korisniku</h5>
                 <small class="text-muted">Datum prijavljivaja: <%=users.date.getDate()%>.<%=users.date.getMonth()%>.<%=users.date.getFullYear()%>.</small>
               </div>
-              <p class="mb-1">Korisnicko ime: <%=users.name%></br>Email: <%=users.email%></p>
+              <p class="mb-1">Korisničko ime: <%=users.name%></br>Email: <%=users.email%></p>
               <input class="nevidljivo" name="id" value="<%=users._id%>"></input>
              <%-include("./partials/brisi.ejs")%>
             </form>
