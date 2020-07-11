@@ -76,7 +76,17 @@ router.post("/filterpodatumu", (req, res) => {
     });
   });
 });
-
+router.post("/filterkorisnika", (req, res) => {
+  console.log("req.body", req.body);
+  console.log("req.body.ime_korisnika", req.body.ime_korisnika);
+  User.find({ name: req.body.ime_korisnika }).then((users) => {
+    console.log(users);
+    res.render("korisnici", {
+      users: users,
+      name: req.user.name,
+    });
+  });
+});
 router.post("/register", (req, res) => {
   const { name, email, password, password2 } = req.body;
   let errors = [];
