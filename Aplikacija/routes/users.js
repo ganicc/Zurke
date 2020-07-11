@@ -177,14 +177,18 @@ router.post("/pozovi", (req, res, next) => {
   }
   User.findOne({ name: req.body.name }).then((user) => {
     id = user._id;
-    User.findByIdAndUpdate({ _id: id }, function (err, result) {
-      if (err) {
-        res.send(err);
-      } else {
-        console.log("---> Uspesno! <---");
-        res.redirect("/dashboard");
+    User.findByIdAndUpdate(
+      { _id: id },
+      { routerData: { Poziv: true, userReq: req.body.korisnik } },
+      function (err, result) {
+        if (err) {
+          res.send(err);
+        } else {
+          console.log("---> Uspesno! <---");
+          res.redirect("/dashboard");
+        }
       }
-    });
+    );
   });
 });
 

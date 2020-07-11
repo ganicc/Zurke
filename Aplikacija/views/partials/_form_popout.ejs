@@ -19,11 +19,19 @@
     <input class="nevidljivo" name="name" value="<%=name%>"></input>
     <span class="close" id="close" onclick="zatvori()">&times;</span>
   </form>
-  <!-- <button type="submit" class="btn btn-info" style="float: right;" >
-    Zatvori</button> -->
 </div>
+
 <% } %>
 
+<% if(Poziv==true) {  %>     
+  <div id="alert" class="alert alert-info">
+    <form action="/pregledzurki" method="GET" >
+        <strong>Info: </strong><%=userReq%> vas je pozvao na svoj dogadjaj.
+      <button type="submit" class="btn btn-info" >Pregledaj njegove žurke</button>
+        <span class="close" id="close" onclick="zatvori()">&times;</span>
+      </form>
+    </div>
+  <% } %>
 
 <% if(Odgovor==true) { %>     
 <!--<div id="alert" class="alert alert-info">
@@ -46,6 +54,9 @@
 function zatvori(){
 var test=document.getElementById('alert');
 test.style.display="none";
+
 }
 </script>
+
+
 
