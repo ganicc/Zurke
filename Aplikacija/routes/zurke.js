@@ -27,26 +27,49 @@ const upload = multer({ storage: storage, fileFilter: fileFilter });
 const Zurka = require("../models/Zurka");
 
 router.post("/organizujzurku", upload.single("slikaZurke"), (req, res) => {
-  const zurka = new Zurka({
-    organizator: req.body.organizator,
-    adresa: req.body.adresa,
-    vreme: req.body.vreme,
-    datum: req.body.datum,
-    muzika: req.body.muzika,
-    brojljudi: req.body.brojljudi,
-    slikaZurke: req.file.path,
-  });
-  if (zurka.brojljudi <= 0) {
-    req.flash("error_msg", "Ne mozete kreirati zurku bez ljudi.");
-    res.redirect("/dashboard");
-    return;
+  var danasnjidatum = new Date();
+  var mesec = danasnjidatum.getUTCMonth() + 1; //months from 1-12
+  if (mesec < 10) {
+    mesec = "0" + mesec;
   }
-  zurka
-    .save()
-    .then((zurka) => {
+  var dan = danasnjidatum.getUTCDate();
+  if (dan < 10) {
+    dan = "0" + dan;
+  }
+  var godina = danasnjidatum.getUTCFullYear();
+  danasnjidatum = godina + "-" + mesec + "-" + dan;
+
+  console.log("dansnji datum " + danasnjidatum);
+  console.log("datumOdrzavanja " + req.body.datum);
+
+  if (danasnjidatum < req.body.datum) {
+    const zurka = new Zurka({
+      organizator: req.body.organizator,
+      adresa: req.body.adresa,
+      vreme: req.body.vreme,
+      datum: req.body.datum,
+      muzika: req.body.muzika,
+      brojljudi: req.body.brojljudi,
+      slikaZurke: req.file.path,
+    });
+    if (zurka.brojljudi <= 0) {
+      req.flash("error_msg", "Ne mozete kreirati zurku bez ljudi.");
       res.redirect("/dashboard");
-    })
-    .catch((err) => console.log(err));
+      return;
+    }
+    zurka
+      .save()
+      .then((zurka) => {
+        res.redirect("/dashboard");
+      })
+      .catch((err) => console.log(err));
+  } else {
+    req.flash(
+      "error_msg",
+      "Ne možete kreirati žurku sa tim datumom, izaberite neki od predstojećih datuma."
+    );
+    res.redirect("/dashboard");
+  }
 });
 
 router.post("/delete", (req, res) => {
