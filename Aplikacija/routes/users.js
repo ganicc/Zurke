@@ -195,6 +195,7 @@ router.post("/pozovi", (req, res, next) => {
 router.post("/update", (req, res, next) => {
   var id;
   console.log("Provera korisnika: " + req.body.organizator);
+  console.log("Id zurke kojoj je zahtev poslat: " + req.body.idzurke);
   if (req.body.name == req.body.organizator) {
     req.flash("error_msg", "Ne mozete reagovati na svoj dogadjaj");
     res.redirect("/dashboard");
@@ -204,7 +205,10 @@ router.post("/update", (req, res, next) => {
     id = user._id;
     User.findByIdAndUpdate(
       { _id: id },
-      { routerData: { Dogadjaj: true, userReq: req.body.name } },
+      {
+        routerData: { Dogadjaj: true, userReq: req.body.name },
+        idZahtevaneZurke: req.body.idzurke,
+      },
       function (err, result) {
         if (err) {
           res.send(err);
@@ -315,9 +319,11 @@ router.post("/delete", (req, res) => {
 
 router.post("/updateReverse", (req, res, next) => {
   var id;
-
-  console.log("UpdateReverse " + req.user.routerData.userReq);
-
+  console.log("Update reverse");
+  console.log("req.body", req.body);
+  console.log("ime onoga ko je poslao zahtev " + req.user.routerData.userReq);
+  console.log("Id zurke kojoj je zahtev poslat " + req.user.idZahtevaneZurke);
+  console.log("User", req.user);
   User.findOne({ name: req.user.routerData.userReq }).then((user) => {
     User.findByIdAndUpdate(
       { _id: user._id },
@@ -326,7 +332,7 @@ router.post("/updateReverse", (req, res, next) => {
         if (err) {
           res.send(err);
         } else {
-          Zurka.findOne({ organizator: req.body.name }).then((zurka) => {
+          Zurka.findById({ _id: req.user.idZahtevaneZurke }).then((zurka) => {
             id = zurka._id;
             console.log(zurka);
             var novibroj = zurka.brojljudi - 1;
