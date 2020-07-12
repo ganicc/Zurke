@@ -78,7 +78,8 @@ router.post("/delete", (req, res) => {
       res.send(err);
     } else {
       console.log("Uspeo.");
-      res.redirect(req.get("referer"));
+      //res.redirect(req.get("referer"));
+      return;
     }
   });
 });
