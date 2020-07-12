@@ -105,5 +105,22 @@ router.post("/zurka", (req, res) => {
     })
     .catch((err) => console.log(err));
 });
-
+router.post("/komentarisi", (req, res) => {
+  const komentar = { name: req.body.name, comment: req.body.comment };
+  Zurka.findByIdAndUpdate(
+    { _id: req.body._id },
+    { $push: { komentari: komentar } }
+  )
+    .then((zurka) => {
+      if (zurka) {
+        res.render("zurka", {
+          zurka: zurka,
+          name: req.body.name,
+        });
+      } else {
+        res.redirect("/dashboard");
+      }
+    })
+    .catch((err) => console.log(err));
+});
 module.exports = router;

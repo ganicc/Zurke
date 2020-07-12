@@ -109,6 +109,45 @@
               </tr>
             </tbody>
           </table>
+
+           <form action="/zurke/komentarisi" method="POST" >
+            <div class="form-group">
+               <label for="comment">Komentari</label>
+                  <input
+                      type="comment"
+                      id="comment"
+                      name="comment"
+                      class="form-control"
+                      placeholder="Unesite komentar"
+                   />
+                <input type="text" class="nevidljivo" id="_id" name="_id" value=<%=zurka._id%>>
+                <input id="name" class="nevidljivo" name="name" value=<%=name%>>
+                 <button type="submit" style="float: left;" class="btn btnnovi btn-primary">Komentarisi</button>
+             </div>
+
+          <table class="table table-bordered">
+            <caption>Komentare mogu postaviti samo korisnici koji su prisustvovali žurkama</caption>
+            <thead>
+              <tr>
+              
+              <th>Korisnicko ime</th>
+              <th>Komentar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% zurka.komentari.forEach(komentar=>{ %>
+              <tr>
+              <td>
+              <%=komentar.name %> 
+              </td>
+              <td>
+               <%=komentar.comment %> 
+              </td>
+              <% }) %>
+              </tr>
+            </tbody>
+          </table>
+
         </div>
       </div>
     </div>
