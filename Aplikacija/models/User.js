@@ -41,7 +41,8 @@ const UserSchema = new mongoose.Schema({
             type: String    
         },
         'Potvrda2':{
-            type: String
+            type: Boolean,
+            default: false
         }
     }
 });
