@@ -36,6 +36,12 @@ const UserSchema = new mongoose.Schema({
         'Poziv':{
             type: Boolean,
             default: false
+        },
+        'Potvrda1':{
+            type: String    
+        },
+        'Potvrda2':{
+            type: String
         }
     }
 });

@@ -51,7 +51,7 @@
         <div class="card card-body">
           <h1 class="text-center mb-3">
             <svg
-              width="1em"
+              width="3em"
               height="1em"
               viewBox="0 0 16 16"
               class="bi bi-info-circle-fill"
@@ -80,7 +80,7 @@
           </h1>
 
           <!-- <table class="table table-striped table-dark"> -->
-          <table class="table table-md-responsive table-dark">
+          <table class="table table-md-responsive table-dark" style="width: 800px;">
             <thead>
               <tr>
                 <th scope="col">Organizator žurke</th>
@@ -89,6 +89,7 @@
                 <th scope="col">Vreme održavanja žurke</th>
                 <th scope="col">Muzika</th>
                 <th scope="col">Preostali broj slobodnih mesta</th>
+                <th scope="col">Komentarisi</th>
               </tr>
             </thead>
             <tbody>
@@ -99,6 +100,41 @@
                 <td><%=zurka.vreme%></td>
                 <td><%=zurka.muzika%></td>
                 <td><%=zurka.brojljudi%></td>
+                <td><form action="/zurke/komentarisi" method="POST" >
+                  <div class="form-group">
+                    <label for="comment">Komentar</label>
+                    <input
+                      type="comment"
+                      id="comment"
+                      name="comment"
+                      class="form-control"
+                      placeholder="Unesite komentar"
+                    />
+                    <input type="text" class="nevidljivo" id="_id" name="_id" value=<%=zurka._id%>>
+                    <input id="name" class="nevidljivo" name="name" value=<%=name%>>
+                    <button type="submit" style="float: left;" class="btn btnnovi btn-primary">Komentarisi</button>
+                  </div></td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <table>
+            <thead>
+              <tr>
+              <th>Korisnicko ime</th>
+              <th>Komentar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% zurka.komentari.forEach(komentar=>{ %>
+              <tr>
+              <td>
+              <%=komentar.name %> 
+              </td>
+              <td>
+               <%=komentar.comment %> 
+              </td>
+              <% }) %>
               </tr>
             </tbody>
           </table>
