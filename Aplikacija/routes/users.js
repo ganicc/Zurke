@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const User = require("../models/User");
 const passport = require("passport");
 var Zurka = require("../models/Zurka");
-
+var zurkekojesesalju = [];
 //Login page
 router.get("/login", (req, res) => {
   res.render("login");
@@ -76,6 +76,38 @@ router.post("/filterpodatumu", (req, res) => {
     });
   });
 });
+router.post("/filterdatum", (req, res) => {
+  console.log("req.body ", req.body);
+  console.log("req.body.name Ime ulogovanog", req.body.name);
+  Zurka.find().then((zurka) => {
+    console.log(zurka);
+    zurka.forEach(function (zurka) {
+      var danasnjidatum = new Date();
+      var mesec = danasnjidatum.getUTCMonth() + 1; //months from 1-12
+      if (mesec < 10) {
+        mesec = "0" + mesec;
+      }
+      var dan = danasnjidatum.getUTCDate();
+      if (dan < 10) {
+        dan = "0" + dan;
+      }
+      var godina = danasnjidatum.getUTCFullYear();
+      danasnjidatum = godina + "-" + mesec + "-" + dan;
+
+      console.log("dansnji datum " + danasnjidatum);
+      console.log("datumOdrzavanja " + zurka.datum);
+
+      if (danasnjidatum < zurka.datum) {
+        zurkekojesesalju.push(zurka);
+      }
+    });
+  });
+  res.render("pregledzurki", {
+    zurka: zurkekojesesalju,
+    name: req.body.name,
+  });
+});
+
 router.post("/filterkorisnika", (req, res) => {
   console.log("req.body", req.body);
   console.log("req.body.ime_korisnika", req.body.ime_korisnika);

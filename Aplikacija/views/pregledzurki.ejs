@@ -40,6 +40,8 @@
     </div>
   </div>
 
+
+
     <div id="row" class="topdiv">
       <div id="row" class="filterdiv">
         <form action="/users/filterpomuzici" method="POST">
@@ -58,6 +60,7 @@
         </form>
       </div>
     </div>
+
 
       <div id="row" class="topdiv">
         <div id="row" class="filterdiv">
@@ -81,10 +84,27 @@
               <div><button type="submit" style="float: left;" class="btn btnnovi btn-primary">Filtriraj po datumu</button></form>
             </form>
           </div>
+
+
+          <div id="row" class="topdiv">
+            <div id="row" class="filterdiv">
+              <form action="/users/filterdatum" method="POST">
+                <!-- <input name="datum" ></input> -->
+                <div class="input-group mb-3">
+                  <!-- <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Datum</span>
+                  </div> -->
+                  <!-- <input type="date" aria-label="Sizing example input" id="datum" name="datum" aria-describedby="inputGroup-sizing-default"> -->
+                  <input class="nevidljivo" name="name" value="<%=name%>"></input>
+                </div>
+                <div><button type="submit" style="float: left;" class="btn btnnovi btn-primary">Pregled samo predstojećih žurki</button></form>
+              </form>
+            </div>
   </div>
 </div>
 
 <div class="topdiv">
+
   <% zurka.forEach(function(zurka){ %>
     
     <form action="/users/update" method="POST">  
