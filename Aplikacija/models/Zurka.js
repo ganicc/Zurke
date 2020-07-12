@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const KomentarSchema= new Schema({
+const KomentarSchema= new mongoose.Schema({
     name: 
     {
         type: String,
