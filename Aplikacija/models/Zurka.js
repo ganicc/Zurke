@@ -49,7 +49,11 @@ const ZurkaSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    komentari: [KomentarSchema]
+    komentari: [KomentarSchema],
+    listaLjudi:
+    {
+        type: String
+    }
 });
 
 const Zurka = mongoose.model('Zurka', ZurkaSchema);
