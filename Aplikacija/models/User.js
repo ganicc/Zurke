@@ -32,6 +32,10 @@ const UserSchema = new mongoose.Schema({
         'Odgovor':{
             type: Boolean,
             default: false
+        },
+        'Poziv':{
+            type: Boolean,
+            default: false
         }
     }
 });

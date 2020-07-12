@@ -1,5 +1,18 @@
 const mongoose = require('mongoose');
 
+const KomentarSchema= new Schema({
+    name: 
+    {
+        type: String,
+        required: true
+    },
+    comment: 
+    {
+        type: String,
+        required: true
+    }
+})
+
 const ZurkaSchema = new mongoose.Schema({
     organizator:
     {
@@ -35,7 +48,8 @@ const ZurkaSchema = new mongoose.Schema({
     {
         type: String,
         required: true
-    }
+    },
+    komentari: [KomentarSchema]
 });
 
 const Zurka = mongoose.model('Zurka', ZurkaSchema);
