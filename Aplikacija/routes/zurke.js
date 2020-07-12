@@ -106,21 +106,41 @@ router.post("/zurka", (req, res) => {
     .catch((err) => console.log(err));
 });
 router.post("/komentarisi", (req, res) => {
-  const komentar = { name: req.body.name, comment: req.body.comment };
-  Zurka.findByIdAndUpdate(
-    { _id: req.body._id },
-    { $push: { komentari: komentar } }
-  )
-    .then((zurka) => {
-      if (zurka) {
-        res.render("zurka", {
-          zurka: zurka,
-          name: req.body.name,
-        });
-      } else {
-        res.redirect("/dashboard");
-      }
-    })
-    .catch((err) => console.log(err));
+  var danasnjidatum = new Date();
+  var mesec = danasnjidatum.getUTCMonth() + 1; //months from 1-12
+  if (mesec < 10) {
+    mesec = "0" + mesec;
+  }
+  var dan = danasnjidatum.getUTCDate();
+  if (dan < 10) {
+    dan = "0" + dan;
+  }
+  var godina = danasnjidatum.getUTCFullYear();
+  danasnjidatum = godina + "-" + mesec + "-" + dan;
+
+  console.log("dansnji datum " + danasnjidatum);
+  console.log("datumOdrzavanja " + req.body.datum);
+
+  if (danasnjidatum > req.body.datum) {
+    const komentar = { name: req.body.name, comment: req.body.comment };
+    Zurka.findByIdAndUpdate(
+      { _id: req.body._id },
+      { $push: { komentari: komentar } }
+    )
+      .then((zurka) => {
+        if (zurka) {
+          res.render("zurka", {
+            zurka: zurka,
+            name: req.body.name,
+          });
+        } else {
+          res.redirect("/dashboard");
+        }
+      })
+
+      .catch((err) => console.log(err));
+  } else {
+    res.redirect("/dashboard");
+  }
 });
 module.exports = router;
