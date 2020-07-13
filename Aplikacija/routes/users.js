@@ -119,11 +119,40 @@ router.post("/filterkorisnika", (req, res) => {
     });
   });
 });
-router.post("/register", (req, res) => {
-  const { name, email, password, password2 } = req.body;
+
+//Multer
+
+const multer = require("multer");
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./slikeKorisnika/");
+  },
+  filename: function (req, file, cb) {
+    cb(
+      null,
+      new Date().toISOString().replace(/:|\./g, "") + " - " + file.originalname
+    );
+  },
+});
+
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+
+const upload = multer({ storage: storage, fileFilter: fileFilter });
+
+//Register
+
+router.post("/register",upload.single("slikaKorisnika"), (req, res) => {
+  const slikaKorisnika = req.file.path;
+  const { name, email, password, password2} = req.body;
   let errors = [];
 
-  if (!name || !email || !password || !password2) {
+  if (!name || !email || !password || !password2 || !slikaKorisnika) {
     errors.push({ msg: "Popunite sve podatke." });
   }
 
@@ -142,6 +171,7 @@ router.post("/register", (req, res) => {
       email,
       password,
       password2,
+      slikaKorisnika
     });
   } else {
     User.findOne({ email: email }).then((user) => {
@@ -153,12 +183,14 @@ router.post("/register", (req, res) => {
           email,
           password,
           password2,
+          slikaKorisnika
         });
       } else {
         const newUser = new User({
           name,
           email,
           password,
+          slikaKorisnika
         });
         //pretvaranje sifre u bcrypt
 

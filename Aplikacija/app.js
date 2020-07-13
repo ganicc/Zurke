@@ -12,6 +12,7 @@ const app = express();
 app.use(express.static(__dirname + "/views"));
 app.use(bodyParser.json());
 app.use("/uploads", express.static("uploads"));
+app.use("/slikeKorisnika", express.static("slikeKorisnika"));
 require("./config/passport")(passport);
 
 // Mongo
