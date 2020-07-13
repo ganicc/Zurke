@@ -147,9 +147,9 @@ const upload = multer({ storage: storage, fileFilter: fileFilter });
 
 //Register
 
-router.post("/register",upload.single("slikaKorisnika"), (req, res) => {
+router.post("/register", upload.single("slikaKorisnika"), (req, res) => {
   const slikaKorisnika = req.file.path;
-  const { name, email, password, password2} = req.body;
+  const { name, email, password, password2 } = req.body;
   let errors = [];
 
   if (!name || !email || !password || !password2 || !slikaKorisnika) {
@@ -171,7 +171,7 @@ router.post("/register",upload.single("slikaKorisnika"), (req, res) => {
       email,
       password,
       password2,
-      slikaKorisnika
+      slikaKorisnika,
     });
   } else {
     User.findOne({ email: email }).then((user) => {
@@ -183,14 +183,14 @@ router.post("/register",upload.single("slikaKorisnika"), (req, res) => {
           email,
           password,
           password2,
-          slikaKorisnika
+          slikaKorisnika,
         });
       } else {
         const newUser = new User({
           name,
           email,
           password,
-          slikaKorisnika
+          slikaKorisnika,
         });
         //pretvaranje sifre u bcrypt
 
@@ -402,7 +402,10 @@ router.post("/updateReverse", (req, res, next) => {
             var novibroj = zurka.brojljudi - 1;
             Zurka.findByIdAndUpdate(
               { _id: id },
-              { brojljudi: novibroj, $push : {listaLjudi: req.user.routerData.userReq} },
+              {
+                brojljudi: novibroj,
+                $push: { listaLjudi: req.user.routerData.userReq },
+              },
               function (err, result) {
                 if (err) {
                   res.send(err);

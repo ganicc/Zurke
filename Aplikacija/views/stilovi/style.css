@@ -24,7 +24,12 @@ img {
 .nevidljivo {
   visibility: hidden;
 }
-
+.SlikaVelicina {
+  max-width: 400px;
+  max-height: 400px;
+  min-width: 150px;
+  min-width: 150px;
+}
 .glavniDivProfila {
   display: flex;
   flex-direction: row;
