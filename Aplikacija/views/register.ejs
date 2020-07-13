@@ -5,9 +5,9 @@
         <i class="fas fa-user-plus"></i> Registracija
       </h1>
       <%- include('./partials/messages.ejs') %>
-      <form action="/users/register" method="POST">
+      <form action="/users/register" method="POST" enctype="multipart/form-data">
         <div class="form-group">
-          <label for="name">Korsičnisko ime</label>
+          <label for="name">Korisnicko ime</label>
           <input
             type="name"
             id="name"
@@ -49,6 +49,21 @@
             placeholder="Ponovo unesite lozinku"
             value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
           />
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default"
+                >Slika</span
+              >
+            </div>
+            <input
+              type="file"
+              class="form-control"
+              aria-label="Sizing example input"
+              id="slikaKorisnika"
+              name="slikaKorisnika"
+              aria-describedby="inputGroup-sizing-default"
+            />
+          </div>
         </div>
         <button type="submit" class="btn btn-primary btn-block">
           Registruj se

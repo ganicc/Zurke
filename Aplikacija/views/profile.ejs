@@ -49,13 +49,14 @@
     <div class="glavniDivProfila">
       <div class="card" style="width: 18rem;">
         <img
-          src="https://cdn0.iconfinder.com/data/icons/social-media-network-4/48/male_avatar-512.png"
+          src="http://localhost:3000/<%=slikaKorisnika%>"
           class="card-img-top"
           alt="..."
         />
         <div class="card-body">
           <h5 class="card-title"><%= name %></h5>
           <p class="card-text"><%=email%></p>
+          
           <a class="card-text"
             >Datum prijave: <%= date.getDate() %>.<%= date.getMonth()
             %>.<%=date.getFullYear()%>.</a

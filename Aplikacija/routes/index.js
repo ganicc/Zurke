@@ -21,6 +21,7 @@ router.get("/users/profile", ensureAuthenticated, (req, res) => {
     name: req.user.name,
     email: req.user.email,
     date: req.user.date,
+    slikaKorisnika: req.user.slikaKorisnika
   });
 });
 

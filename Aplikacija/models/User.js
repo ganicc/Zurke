@@ -25,6 +25,11 @@ const UserSchema = new mongoose.Schema({
     {
         type: String
     },
+    slikaKorisnika:
+    {
+        type: String,
+        required: true
+    },
     routerData:{
         'Dogadjaj':{
             type: Boolean,

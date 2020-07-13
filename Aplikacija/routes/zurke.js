@@ -27,6 +27,7 @@ const upload = multer({ storage: storage, fileFilter: fileFilter });
 const Zurka = require("../models/Zurka");
 
 router.post("/organizujzurku", upload.single("slikaZurke"), (req, res) => {
+  console.log(req.file);
   var danasnjidatum = new Date();
   var mesec = danasnjidatum.getUTCMonth() + 1; //months from 1-12
   if (mesec < 10) {
