@@ -21,6 +21,10 @@ const UserSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
+    idZahtevaneZurke:
+    {
+        type: String
+    },
     routerData:{
         'Dogadjaj':{
             type: Boolean,

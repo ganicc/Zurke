@@ -140,7 +140,7 @@ router.post("/komentarisi", (req, res) => {
 
       .catch((err) => console.log(err));
   } else {
-    res.redirect("/dashboard");
+    return;
   }
 });
 module.exports = router;
