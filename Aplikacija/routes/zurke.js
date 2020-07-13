@@ -122,26 +122,40 @@ router.post("/komentarisi", (req, res) => {
   console.log("dansnji datum " + danasnjidatum);
   console.log("datumOdrzavanja " + req.body.datum);
 
-  if (danasnjidatum > req.body.datum) {
-    const komentar = { name: req.body.name, comment: req.body.comment };
-    Zurka.findByIdAndUpdate(
-      { _id: req.body._id },
-      { $push: { komentari: komentar } }
-    )
-      .then((zurka) => {
-        if (zurka) {
-          res.render("zurka", {
-            zurka: zurka,
-            name: req.body.name,
-          });
-        } else {
-          res.redirect("/dashboard");
-        }
-      })
+  //Provera da li je prisustvovao zurci
 
-      .catch((err) => console.log(err));
-  } else {
-    return;
-  }
+  let prisustvovao = false;
+  Zurka.findById({_id: req.body._id})
+  .then((zurka)=>{
+    zurka.listaLjudi.forEach(posetilac => {
+      if(posetilac === req.body.name){
+      prisustvovao= true;
+      console.log(posetilac + prisustvovao);
+      }
+      if (danasnjidatum > req.body.datum && prisustvovao=== true) {
+        const komentar = { name: req.body.name, comment: req.body.comment };
+        Zurka.findByIdAndUpdate(
+          { _id: req.body._id },
+          { $push: { komentari: komentar } }
+        )
+          .then((zurka) => {
+            if (zurka) {
+              res.render("zurka", {
+                zurka: zurka,
+                name: req.body.name,
+              });
+            } else {
+              res.redirect("/dashboard");
+            }
+          })
+    
+          .catch((err) => console.log(err));
+      } else {
+        return;
+      }
+    });
+  }).catch((err)=>console.log(err));
+  
+  
 });
 module.exports = router;

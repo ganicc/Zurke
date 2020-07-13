@@ -402,7 +402,7 @@ router.post("/updateReverse", (req, res, next) => {
             var novibroj = zurka.brojljudi - 1;
             Zurka.findByIdAndUpdate(
               { _id: id },
-              { brojljudi: novibroj },
+              { brojljudi: novibroj, $push : {listaLjudi: req.user.routerData.userReq} },
               function (err, result) {
                 if (err) {
                   res.send(err);
